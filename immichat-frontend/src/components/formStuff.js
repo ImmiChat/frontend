@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import CountryDropdown from 'country-dropdown-with-flags-for-react';  
 
 const move = keyframes`
 0%{
@@ -13,8 +14,8 @@ const move = keyframes`
 
 `;
 const BackgroundBox = styled.div`
-  background-color: #beeefb;
-  height: 50vh;
+  background-color: #50C878;
+  height: 60vh;
   width: 50%;
 
   display: flex;
@@ -63,7 +64,7 @@ const BackgroundBox = styled.div`
 `;
 
 const Box1 = styled.div`
-  background-color: #053271;
+  background-color: #FFFFFF;
   width: 45%;
   height: 100%;
   position: absolute;
@@ -87,6 +88,7 @@ const Form = styled.form`
   justify-content: center;
   height: 100%;
   padding: 0 4rem;
+  font-family: 'Courier New', monospace;
 
   /* z-index: 100; */
 `;
@@ -176,11 +178,11 @@ const ButtonAnimate = styled.button`
 const Text = styled.div`
   position: absolute;
   z-index: 1000;
-  font-size: 1.5rem;
+  font-size: 2.7rem;
   display: flex;
   flex-direction: column;
-  letter-spacing: 0.2rem;
-  color: #fff;
+  color: #000;
+  font-family: 'Brush Script MT', cursive;
 
   .attention {
     font-size: 2.5rem;
@@ -198,8 +200,14 @@ const Text = styled.div`
 
 function FormComponent() {
   const [click, setClick] = useState(false);
+  const [firstInput, setFirstInput] = useState('');
+  const [secondInput, setSecondInput] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
   const handleClick = () => setClick(!click);
   const preventReload = (e) => (e.preventDefault());
+
   return (
     <>
       {" "}
@@ -208,14 +216,17 @@ function FormComponent() {
 
         <Form className="signin">
           <Title>Sign In</Title>
-          <Input type="email" name="email" id="emailId" placeholder="Email" />
+          <Input type="email" name="email" id="emailId1" placeholder="Email" value={firstInput}
+            onChange={(e) => setFirstInput(e.target.value)}/>
           <Input
             type="password"
             name="password"
-            id="passwordId"
+            id="passwordId1"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Link href="#">Forgot Your Password?</Link>
+          <Link href="#"><b>Forgot Your Password?</b></Link>
           <Button onClick={preventReload}>Sign In</Button>
         </Form>
 
@@ -223,27 +234,45 @@ function FormComponent() {
           <Title>Sign Up</Title>
           <Input
             type="text"
-            name="username"
-            id="usernameId"
-            placeholder="Username"
+            name="fname"
+            id="fname"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <Input
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
 
-          <Input type="email" name="email" id="emailId" placeholder="Email" />
+          <Input type="email" name="email" id="emailId2" placeholder="Email" value={secondInput}
+            onChange={(e) => setSecondInput(e.target.value)}/>
           <Input
             type="password"
             name="password"
-            id="passwordId"
+            id="passwordId2"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
+          <h2>Country of origin:</h2>
+          <CountryDropdown className="countryForm"
+          preferredCountries={['us', 'ca']}  
+          value="" 
+          handleChange={e => console.log(e.target.value)}>
+          </CountryDropdown>
           <Link href="#" onClick={handleClick}>
-            Already have an Account?
+            <b>Already have an Account?</b>
           </Link>
           <Button onClick={preventReload}>Sign Up</Button>
         </Form>
 
         <Text className="text1" clicked={click}>
           <h1>Welcome!</h1>
-          <br />
           Don't have an account?
           <br />
           <span className="attention">Click on Emoji</span>
@@ -252,7 +281,6 @@ function FormComponent() {
 
         <Text className="text2" clicked={click}>
           <h1>Hello!</h1>
-          <br />
           Already have an account?
           <br />
           <span className="attention">Click on Emoji</span>
