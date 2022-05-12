@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import CountryDropdown from 'country-dropdown-with-flags-for-react';  
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import CountryDropdown from 'country-dropdown-with-flags-for-react';
 
 const move = keyframes`
 0%{
@@ -29,19 +29,17 @@ const BackgroundBox = styled.div`
   border: 1px solid #053271;
 
   .text1 {
-    z-index: ${(props) => (props.clicked ? "-700" : "700")};
-    transform: ${(props) =>
-      props.clicked ? "translateX(0)" : "translateX(100%)"};
+    z-index: ${(props) => (props.clicked ? '-700' : '700')};
+    transform: ${(props) => (props.clicked ? 'translateX(0)' : 'translateX(100%)')};
     transition: transform 1s ease-in-out;
-    animation: ${(props) => (props.clicked ? move : "none")} 1.5s;
+    animation: ${(props) => (props.clicked ? move : 'none')} 1.5s;
   }
 
   .text2 {
-    z-index: ${(props) => (props.clicked ? "700" : "-700")};
-    animation: ${(props) => (props.clicked ? "none" : move)} 1.5s;
+    z-index: ${(props) => (props.clicked ? '700' : '-700')};
+    animation: ${(props) => (props.clicked ? 'none' : move)} 1.5s;
 
-    transform: ${(props) =>
-      props.clicked ? "translateX(-100%)" : "translateX(0%)"};
+    transform: ${(props) => (props.clicked ? 'translateX(-100%)' : 'translateX(0%)')};
     transition: transform 1s ease-in-out;
   }
 
@@ -49,16 +47,16 @@ const BackgroundBox = styled.div`
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "-600" : "500")};
-    transform: ${(props) => (props.clicked ? "none" : "translateX(-50%)")};
+    z-index: ${(props) => (props.clicked ? '-600' : '500')};
+    transform: ${(props) => (props.clicked ? 'none' : 'translateX(-50%)')};
     transition: all 1s;
   }
   .signup {
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "500" : "-500")};
-    transform: ${(props) => (props.clicked ? "translateX(50%)" : "none")};
+    z-index: ${(props) => (props.clicked ? '500' : '-500')};
+    transform: ${(props) => (props.clicked ? 'translateX(50%)' : 'none')};
     transition: all 1s;
   }
 `;
@@ -72,12 +70,10 @@ const Box1 = styled.div`
   top: 0;
 
   z-index: 600;
-  transform: ${(props) =>
-    props.clicked ? "translateX(-122%)" : "translateX(0%)"};
+  transform: ${(props) => (props.clicked ? 'translateX(-122%)' : 'translateX(0%)')};
   transition: transform 1s;
 
-  border-radius: ${(props) =>
-    props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
+  border-radius: ${(props) => (props.clicked ? '23px 0 0 23px' : '0 23px 23px 0')};
 `;
 
 const Form = styled.form`
@@ -158,9 +154,9 @@ const ButtonAnimate = styled.button`
   border: none;
   cursor: pointer;
 
-  right: ${(props) => (props.clicked ? "52%" : "42%")};
+  right: ${(props) => (props.clicked ? '52%' : '42%')};
 
-  transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
+  transform: ${(props) => (props.clicked ? 'rotate(360deg)' : 'rotate(0)')};
 
   transition: all 1.5s;
   background-color: transparent;
@@ -192,7 +188,7 @@ const Text = styled.div`
 
   .attention-icon {
     position: absolute;
-    right: ${(props) => (props.clicked ? "0" : "none")};
+    right: ${(props) => (props.clicked ? '0' : 'none')};
     top: 100%;
     font-size: 5rem;
   }
@@ -200,31 +196,59 @@ const Text = styled.div`
 
 function FormComponent() {
   const [click, setClick] = useState(false);
-  const [firstInput, setFirstInput] = useState('');
-  const [secondInput, setSecondInput] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
+  const [signinForm, setSigninForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleSignInForm = (e) => {
+    e.preventDefault();
+    setSigninForm({
+      ...signinForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const [signupForm, setSignUpForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    countryOfOrigin: '',
+  });
+
+  const handleSignupFormChange = (event) => {
+    event.preventDefault();
+    setSignUpForm({
+      ...signupForm,
+      [event.target.name]: event.target.value,
+    });
+  };
   const handleClick = () => setClick(!click);
   const preventReload = (e) => (e.preventDefault());
 
   return (
     <>
-      {" "}
+      {' '}
       <BackgroundBox clicked={click}>
-        <ButtonAnimate clicked={click} onClick={handleClick}></ButtonAnimate>
+        <ButtonAnimate clicked={click} onClick={handleClick} />
 
         <Form className="signin">
           <Title>Sign In</Title>
-          <Input type="email" name="email" id="emailId1" placeholder="Email" value={firstInput}
-            onChange={(e) => setFirstInput(e.target.value)}/>
+          <Input
+            type="email"
+            name="email"
+            id="emailId1"
+            placeholder="Email"
+            value={signinForm.email}
+            onChange={handleSignInForm}
+          />
           <Input
             type="password"
             name="password"
             id="passwordId1"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={signinForm.password}
+            onChange={handleSignInForm}
           />
           <Link href="#"><b>Forgot Your Password?</b></Link>
           <Button onClick={preventReload}>Sign In</Button>
@@ -234,37 +258,44 @@ function FormComponent() {
           <Title>Sign Up</Title>
           <Input
             type="text"
-            name="fname"
+            name="firstName"
             id="fname"
             placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={signupForm.firstName}
+            onChange={handleSignupFormChange}
           />
           <Input
             type="text"
-            name="lname"
+            name="lastName"
             id="lname"
             placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={signupForm.lastName}
+            onChange={handleSignupFormChange}
           />
 
-          <Input type="email" name="email" id="emailId2" placeholder="Email" value={secondInput}
-            onChange={(e) => setSecondInput(e.target.value)}/>
+          <Input
+            type="email"
+            name="email"
+            id="emailId2"
+            placeholder="Email"
+            value={signupForm.email}
+            onChange={handleSignupFormChange}
+          />
           <Input
             type="password"
             name="password"
             id="passwordId2"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={signupForm.password}
+            onChange={handleSignupFormChange}
           />
           <h2>Country of origin:</h2>
-          <CountryDropdown className="countryForm"
-          preferredCountries={['us', 'ca']}  
-          value="" 
-          handleChange={e => console.log(e.target.value)}>
-          </CountryDropdown>
+          <CountryDropdown
+            className="countryForm"
+            preferredCountries={['us', 'ca']}
+            value={signupForm.countryOfOrigin}
+            handleChange={handleSignupFormChange}
+          />
           <Link href="#" onClick={handleClick}>
             <b>Already have an Account?</b>
           </Link>
