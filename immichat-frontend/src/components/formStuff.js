@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import CountryDropdown from 'country-dropdown-with-flags-for-react';
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import CountryDropdown from "country-dropdown-with-flags-for-react";
 
 const move = keyframes`
 0%{
@@ -14,7 +14,7 @@ const move = keyframes`
 
 `;
 const BackgroundBox = styled.div`
-  background-color: #50C878;
+  background-color: #50c878;
   height: 60vh;
   width: 50%;
 
@@ -29,17 +29,19 @@ const BackgroundBox = styled.div`
   border: 1px solid #053271;
 
   .text1 {
-    z-index: ${(props) => (props.clicked ? '-700' : '700')};
-    transform: ${(props) => (props.clicked ? 'translateX(0)' : 'translateX(100%)')};
+    z-index: ${(props) => (props.clicked ? "-700" : "700")};
+    transform: ${(props) =>
+      props.clicked ? "translateX(0)" : "translateX(100%)"};
     transition: transform 1s ease-in-out;
-    animation: ${(props) => (props.clicked ? move : 'none')} 1.5s;
+    animation: ${(props) => (props.clicked ? move : "none")} 1.5s;
   }
 
   .text2 {
-    z-index: ${(props) => (props.clicked ? '700' : '-700')};
-    animation: ${(props) => (props.clicked ? 'none' : move)} 1.5s;
+    z-index: ${(props) => (props.clicked ? "700" : "-700")};
+    animation: ${(props) => (props.clicked ? "none" : move)} 1.5s;
 
-    transform: ${(props) => (props.clicked ? 'translateX(-100%)' : 'translateX(0%)')};
+    transform: ${(props) =>
+      props.clicked ? "translateX(-100%)" : "translateX(0%)"};
     transition: transform 1s ease-in-out;
   }
 
@@ -47,22 +49,22 @@ const BackgroundBox = styled.div`
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? '-600' : '500')};
-    transform: ${(props) => (props.clicked ? 'none' : 'translateX(-50%)')};
+    z-index: ${(props) => (props.clicked ? "-600" : "500")};
+    transform: ${(props) => (props.clicked ? "none" : "translateX(-50%)")};
     transition: all 1s;
   }
   .signup {
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? '500' : '-500')};
-    transform: ${(props) => (props.clicked ? 'translateX(50%)' : 'none')};
+    z-index: ${(props) => (props.clicked ? "500" : "-500")};
+    transform: ${(props) => (props.clicked ? "translateX(50%)" : "none")};
     transition: all 1s;
   }
 `;
 
 const Box1 = styled.div`
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 45%;
   height: 100%;
   position: absolute;
@@ -70,10 +72,12 @@ const Box1 = styled.div`
   top: 0;
 
   z-index: 600;
-  transform: ${(props) => (props.clicked ? 'translateX(-122%)' : 'translateX(0%)')};
+  transform: ${(props) =>
+    props.clicked ? "translateX(-122%)" : "translateX(0%)"};
   transition: transform 1s;
 
-  border-radius: ${(props) => (props.clicked ? '23px 0 0 23px' : '0 23px 23px 0')};
+  border-radius: ${(props) =>
+    props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
 `;
 
 const Form = styled.form`
@@ -84,7 +88,7 @@ const Form = styled.form`
   justify-content: center;
   height: 100%;
   padding: 0 4rem;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 
   /* z-index: 100; */
 `;
@@ -154,9 +158,9 @@ const ButtonAnimate = styled.button`
   border: none;
   cursor: pointer;
 
-  right: ${(props) => (props.clicked ? '52%' : '42%')};
+  right: ${(props) => (props.clicked ? "52%" : "42%")};
 
-  transform: ${(props) => (props.clicked ? 'rotate(360deg)' : 'rotate(0)')};
+  transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
 
   transition: all 1.5s;
   background-color: transparent;
@@ -178,7 +182,7 @@ const Text = styled.div`
   display: flex;
   flex-direction: column;
   color: #000;
-  font-family: 'Brush Script MT', cursive;
+  font-family: "Brush Script MT", cursive;
 
   .attention {
     font-size: 2.5rem;
@@ -188,7 +192,7 @@ const Text = styled.div`
 
   .attention-icon {
     position: absolute;
-    right: ${(props) => (props.clicked ? '0' : 'none')};
+    right: ${(props) => (props.clicked ? "0" : "none")};
     top: 100%;
     font-size: 5rem;
   }
@@ -197,8 +201,8 @@ const Text = styled.div`
 function FormComponent() {
   const [click, setClick] = useState(false);
   const [signinForm, setSigninForm] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleSignInForm = (e) => {
@@ -209,11 +213,10 @@ function FormComponent() {
     });
   };
   const [signupForm, setSignUpForm] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    countryOfOrigin: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
 
   const handleSignupFormChange = (event) => {
@@ -224,15 +227,42 @@ function FormComponent() {
     });
   };
   const handleClick = () => setClick(!click);
-  const preventReload = (e) => (e.preventDefault());
+  const preventReload = (e) => e.preventDefault();
+
+  const handleRegistration = async (event) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(signupForm),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signinForm),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
 
   return (
     <>
-      {' '}
+      {" "}
       <BackgroundBox clicked={click}>
         <ButtonAnimate clicked={click} onClick={handleClick} />
 
-        <Form className="signin">
+        <Form className="signin" onSubmit={handleLogin}>
           <Title>Sign In</Title>
           <Input
             type="email"
@@ -250,11 +280,13 @@ function FormComponent() {
             value={signinForm.password}
             onChange={handleSignInForm}
           />
-          <Link href="#"><b>Forgot Your Password?</b></Link>
-          <Button onClick={preventReload}>Sign In</Button>
+          <Link href="#">
+            <b>Forgot Your Password?</b>
+          </Link>
+          <Button>Sign In</Button>
         </Form>
 
-        <Form className="signup">
+        <Form className="signup" onSubmit={handleRegistration}>
           <Title>Sign Up</Title>
           <Input
             type="text"
@@ -289,17 +321,10 @@ function FormComponent() {
             value={signupForm.password}
             onChange={handleSignupFormChange}
           />
-          <h2>Country of origin:</h2>
-          <CountryDropdown
-            className="countryForm"
-            preferredCountries={['us', 'ca']}
-            value={signupForm.countryOfOrigin}
-            handleChange={handleSignupFormChange}
-          />
           <Link href="#" onClick={handleClick}>
             <b>Already have an Account?</b>
           </Link>
-          <Button onClick={preventReload}>Sign Up</Button>
+          <Button>Sign Up</Button>
         </Form>
 
         <Text className="text1" clicked={click}>
