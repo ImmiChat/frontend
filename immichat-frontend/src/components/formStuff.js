@@ -217,6 +217,7 @@ function FormComponent() {
     lastName: "",
     email: "",
     password: "",
+    countryofOrigin: ""
   });
 
   const handleSignupFormChange = (event) => {
@@ -227,7 +228,6 @@ function FormComponent() {
     });
   };
   const handleClick = () => setClick(!click);
-  const preventReload = (e) => e.preventDefault();
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -321,6 +321,13 @@ function FormComponent() {
             value={signupForm.password}
             onChange={handleSignupFormChange}
           />
+          <br/>
+          <h2>Choose your country or territory:</h2>
+          <CountryDropdown  id="countries" className='countryForm' 
+          preferredCountries={['us', 'ca']}  
+          value={signupForm.countryofOrigin} 
+          onChange={handleSignupFormChange}>
+          </CountryDropdown>
           <Link href="#" onClick={handleClick}>
             <b>Already have an Account?</b>
           </Link>
