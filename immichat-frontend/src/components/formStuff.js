@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import CountryDropdown from "country-dropdown-with-flags-for-react";
+import AuthenticationContext from "../context/AuthenticationContext";
 
 const move = keyframes`
 0%{
@@ -204,6 +204,9 @@ function FormComponent() {
     email: "",
     password: "",
   });
+  const [signinMessage, setSigninMessage] = React.useState(null);
+  const [signupMessage, setSignupMessage] = React.useState(null);
+  const { setUser } = React.useContext(AuthenticationContext);
 
   const handleSignInForm = (e) => {
     e.preventDefault();
@@ -227,7 +230,6 @@ function FormComponent() {
     });
   };
   const handleClick = () => setClick(!click);
-  const preventReload = (e) => e.preventDefault();
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -240,7 +242,7 @@ function FormComponent() {
       body: JSON.stringify(signupForm),
     });
     const data = await response.json();
-    console.log(data);
+    setSignupMessage(data);
   };
 
   const handleLogin = async (event) => {
@@ -253,7 +255,10 @@ function FormComponent() {
       body: JSON.stringify(signinForm),
     });
     const data = await response.json();
-    console.log(data);
+    setSigninMessage(data.message);
+    if (data.token) {
+      setUser(data.user);
+    }
   };
 
   return (
@@ -281,7 +286,7 @@ function FormComponent() {
             onChange={handleSignInForm}
           />
           <Link href="#">
-            <b>Forgot Your Password?</b>
+            <b>{signinMessage || "Forgot Your Password?"}</b>
           </Link>
           <Button>Sign In</Button>
         </Form>
@@ -322,7 +327,7 @@ function FormComponent() {
             onChange={handleSignupFormChange}
           />
           <Link href="#" onClick={handleClick}>
-            <b>Already have an Account?</b>
+            {signupMessage || "Already have an account?"}
           </Link>
           <Button>Sign Up</Button>
         </Form>
