@@ -237,7 +237,7 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/register", {
+    const response = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -251,7 +251,7 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/login", {
+    const response = await fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -269,8 +269,7 @@ function FormComponent() {
   };
 
   return (
-    <>
-      {" "}
+    <div style={{ fontSize: "62.5%" }}>
       <BackgroundBox clicked={click}>
         <ButtonAnimate clicked={click} onClick={handleClick} />
 
@@ -366,7 +365,7 @@ function FormComponent() {
 
         <Box1 clicked={click} />
       </BackgroundBox>
-    </>
+    </div>
   );
 }
 
