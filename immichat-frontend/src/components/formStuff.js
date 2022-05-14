@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
 import CountryDropdown from "country-dropdown-with-flags-for-react";
+import { Routes, Route } from "react-router-dom";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
+
+<Routes>
+    <Route path="/" element={<FormComponent />} />
+    <Route path="/login" element={<signinForm />} />
+    <Route path="/register" element={<signupForm />} />
+</Routes>
 
 const move = keyframes`
 0%{
@@ -237,7 +244,7 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/register", {
+    const response = await fetch("http://localhost:3000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -251,7 +258,7 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/login", {
+    const response = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -273,7 +280,7 @@ function FormComponent() {
       {" "}
       <BackgroundBox clicked={click}>
         <ButtonAnimate clicked={click} onClick={handleClick} />
-
+       
         <Form className="signin" onSubmit={handleLogin}>
           <Title>Sign In</Title>
           <Input
@@ -292,7 +299,7 @@ function FormComponent() {
             value={signinForm.password}
             onChange={handleSignInForm}
           />
-          <Link href="#">
+          <Link to='/'>
             <b>{signinMessage || "Forgot Your Password?"}</b>
           </Link>
           <Button>Sign In</Button>
@@ -342,7 +349,7 @@ function FormComponent() {
             value={signupForm.countryofOrigin}
             onChange={handleSignupFormChange}
           ></CountryDropdown>
-          <Link href="#" onClick={handleClick}>
+          <Link to="/login" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
           </Link>
           <Button>Sign Up</Button>
