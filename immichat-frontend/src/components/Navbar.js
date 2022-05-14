@@ -7,7 +7,7 @@ const Navbar = () => {
       className="shadow p-3 mb-5 bg-body rounded navbar navbar-expand-lg navbar-light bg-white"
       style={{ height: "50px" }}
     >
-      <div className="container-fluid ">
+      <div className="container">
         <a className="navbar-brand fs-5" href="/">
           ImmiChat
         </a>

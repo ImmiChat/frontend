@@ -11,13 +11,13 @@ const Home = () => {
         className="d-flex m-auto justify-content-evenly "
         style={{ width: "75%" }}
       >
-        <section className="col-4 border border-dark">
+        <section className="col-4 d-flex justify-content-end">
           <Profile />
         </section>
         <section className="col-5">
           <Newsfeed />
         </section>
-        <section className="col-3 border border-dark">Right Side bar</section>
+        <section className="col-3 "></section>
       </main>
       {/* Main */}
     </div>
