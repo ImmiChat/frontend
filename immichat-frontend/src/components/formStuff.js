@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
 import CountryDropdown from "country-dropdown-with-flags-for-react";
 import "./formStuff.css";
-
+import { setToken } from "../utils/http";
 
 const move = keyframes`
 0%{
@@ -237,7 +237,7 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:8000/register", {
+    const response = await fetch("http://localhost:9000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -251,7 +251,7 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:8000/login", {
+    const response = await fetch("http://localhost:9000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -260,9 +260,12 @@ function FormComponent() {
     });
     const data = await response.json();
     setSigninMessage(data.message);
+
     if (data.token) {
+      setToken(data.token);
       setUser(data.user);
     }
+    window.localStorage.setItem("refreshToken", data.refreshToken);
   };
 
   return (
