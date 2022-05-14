@@ -1,5 +1,6 @@
 import "./App.css";
 import FormComponent from "./formStuff";
+// import Post from "./Post.tsx";
 
 function App() {
   return (
