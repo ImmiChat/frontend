@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
 }
 
@@ -31,7 +31,6 @@
 /* * {
   box-sizing: border-box;
 }
-
 body {
   background: #f6f5f7;
   display: flex;
@@ -41,61 +40,4 @@ body {
   font-family: "Montserrat", sans-serif;
   height: 100vh;
   margin: -20px 0 50px;
-} */
-
-/* *,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  box-sizing: border-box;
-  background: linear-gradient(115deg, #ff9797 0%, #0f0068 100%),
-    linear-gradient(245deg, #a8ffe5 0%, #0500ff 100%),
-    radial-gradient(100% 225% at 100% 0%, #ff003d 0%, #000000 100%),
-    radial-gradient(
-      90% 160% at 0% 100%,
-      #e42c64 0%,
-      #e42c64 30%,
-      #614ad3 calc(30% + 1px),
-      #614ad3 60%,
-      #2d248a calc(60% + 1px),
-      #2d248a 70%,
-      #121b74 calc(70% + 1px),
-      #121b74 100%
-    ),
-    linear-gradient(
-      100deg,
-      #48466f 9%,
-      #48466d 35%,
-      #3d84a8 calc(35% + 1px),
-      #3d84a8 65%,
-      #46cdcf calc(65% + 1px),
-      #46cdcf 70%,
-      #abedd8 calc(70% + 1px),
-      #abedd8 100%
-    );
-  background-blend-mode: overlay, overlay, overlay, overlay, normal;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-.countryForm {
-  height: 30px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 } */

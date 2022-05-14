@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
 import CountryDropdown from "country-dropdown-with-flags-for-react";
+import "./formStuff.css";
 
 const move = keyframes`
 0%{
