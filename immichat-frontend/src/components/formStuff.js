@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
+import CountryDropdown from "country-dropdown-with-flags-for-react";
 
 const move = keyframes`
 0%{
@@ -220,7 +221,7 @@ function FormComponent() {
     lastName: "",
     email: "",
     password: "",
-    countryofOrigin: ""
+    countryofOrigin: "",
   });
 
   const handleSignupFormChange = (event) => {
@@ -327,13 +328,15 @@ function FormComponent() {
             value={signupForm.password}
             onChange={handleSignupFormChange}
           />
-          <br/>
+          <br />
           <h2>Choose your country or territory:</h2>
-          <CountryDropdown  id="countries" className='countryForm' 
-          preferredCountries={['us', 'ca']}  
-          value={signupForm.countryofOrigin} 
-          onChange={handleSignupFormChange}>
-          </CountryDropdown>
+          <CountryDropdown
+            id="countries"
+            className="countryForm"
+            preferredCountries={["us", "ca"]}
+            value={signupForm.countryofOrigin}
+            onChange={handleSignupFormChange}
+          ></CountryDropdown>
           <Link href="#" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
           </Link>
