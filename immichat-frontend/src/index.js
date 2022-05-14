@@ -1,8 +1,8 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom/client";
 import App from "./components/App";
 import AuthenticationContextProvider from "./context/AuthenticationContextProvider";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
