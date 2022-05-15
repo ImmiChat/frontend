@@ -4,7 +4,6 @@ import { ThumbUp, Comment, AccountCircle, Send } from "@mui/icons-material";
 
 const postStyle = {
   width: "500px",
-  height: "300px",
   backgroundColor: "white",
 };
 
@@ -35,20 +34,12 @@ const Post = (props) => {
       <div className="d-flex" style={topStyle}>
         <AccountCircle style={accountIcon} />
         <div className="d-flex flex-column">
-          <span className="fw-bolder">{props.user.name} Lu</span>
-          <span>5 min ago.....</span>
+          <span className="fw-bolder">{props.name}</span>
+          <span>{props.time}</span>
         </div>
       </div>
       <div className="">
-        <p style={textStyle}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-          minima sapiente vel eos repellendus sunt ipsam laborum nisi
-          repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam
-          tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Consequuntur minima sapiente vel eos
-          repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis
-          nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.
-        </p>
+        <p style={textStyle}>{props.body}</p>
       </div>
       <div className="border-bottom border-dark d-flex justify-content-between px-5">
         <p>#ofLikes</p>

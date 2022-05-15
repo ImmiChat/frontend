@@ -5,29 +5,16 @@ import Error from "./Error";
 import React from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
 import ProtectedRoute from "./ProtectedRoute";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+  const context = React.useContext(AuthenticationContext);
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<FormComponent />} />
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<FormComponent />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="*" element={<Error />} />
+    </Routes>
   );
 }
 
