@@ -9,7 +9,7 @@ const AuthenticationContextProvider = ({ children }) => {
     if (!refreshToken) {
       return;
     }
-    fetch("/authenticate", {
+    fetch("http://localhost:9000/authenticate", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -19,7 +19,7 @@ const AuthenticationContextProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setToken(data.token);
-        setUser(data.user[0]);
+        setUser({ ...data.user[0], isAuth: true });
       });
   }, []);
 
