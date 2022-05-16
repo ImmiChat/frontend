@@ -9,18 +9,23 @@ const AuthenticationContextProvider = ({ children }) => {
     if (!refreshToken) {
       return;
     }
-    fetch("http://localhost:9000/authenticate", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ refreshToken }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setToken(data.token);
+    async function authenticateUser() {
+      try {
+        const response = await fetch("http://localhost:9000/authenticate", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ refreshToken }),
+        });
+        const data = await response.json();
         setUser({ ...data.user[0], isAuth: true });
-      });
+        setToken(data.token);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    authenticateUser();
   }, []);
 
   const context = {

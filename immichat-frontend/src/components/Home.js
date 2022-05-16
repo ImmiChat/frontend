@@ -8,11 +8,11 @@ const Home = () => {
     <div>
       <Navbar />
       <main
-        className="d-flex m-auto justify-content-evenly "
+        className="d-flex m-auto justify-content-evenly border"
         style={{ width: "75%" }}
       >
         <section className="col-4 d-flex justify-content-end">
-          <Profile />
+          <Profile height="400px" width="90%" />
         </section>
         <section className="col-5">
           <Newsfeed />
