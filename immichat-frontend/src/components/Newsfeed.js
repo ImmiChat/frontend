@@ -12,7 +12,7 @@ const Newsfeed = () => {
 
   React.useEffect(() => {
     async function getFeed() {
-      const response = await fetch("http://localhost:9000/feed");
+      const response = await fetch("http://localhost:3000/feed");
       const data = await response.json();
       const postArray = data.map((post) => ({
         name: `${post.first_name} ${post.last_name}`,
