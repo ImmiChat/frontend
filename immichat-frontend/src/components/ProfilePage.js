@@ -9,30 +9,35 @@ const ProfilePage = () => {
     height: "600px",
   };
   const iconStyle = {
-    width: "150px",
-    height: "150px",
+    width: "100px",
+    height: "100px",
   };
 
   return (
     <div>
       <Navbar />
-      <div class="container-xl px-4 mt-4">
-        <div class="row">
-          <div class="col-xl-3">
+      <div className="container-xl px-4 mt-4">
+        <div className="row">
+          <div className="col-xl-3">
             <Profile height="400px" />
           </div>
-          <div class="col-xl-8">
-            <div class="card mb-4">
-              <div class="card-header">Account Details</div>
-              <div class="card-body">
+          <div className="col-xl-8">
+            <div className="card mb-4">
+              <div className="card-header">Account Details</div>
+              <div className="card-body">
                 <form>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputFirstName">
+                  <div className="row gx-3 mb-3">
+                    <div className="col-md-6">
+                      <AccountCircle style={iconStyle} />
+                      <input type="file" />
+                    </div>
+
+                    <div className="col-md-6">
+                      <label className="small mb-1" for="inputFirstName">
                         First name
                       </label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         id="inputFirstName"
                         type="text"
                         placeholder="Enter your first name"
@@ -40,12 +45,12 @@ const ProfilePage = () => {
                       />
                     </div>
 
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputLastName">
+                    <div className="col-md-6">
+                      <label className="small mb-1" for="inputLastName">
                         Last name
                       </label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         id="inputLastName"
                         type="text"
                         placeholder="Enter your last name"
@@ -54,13 +59,13 @@ const ProfilePage = () => {
                     </div>
                   </div>
 
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="Country">
+                  <div className="row gx-3 mb-3">
+                    <div className="col-md-6">
+                      <label className="small mb-1" for="Country">
                         Country
                       </label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         id="Country"
                         type="text"
                         placeholder="Country"
@@ -69,9 +74,9 @@ const ProfilePage = () => {
                     </div>
                   </div>
 
-                  <div class="row gx-3 mb-3"></div>
+                  <div className="row gx-3 mb-3"></div>
 
-                  <button class="btn btn-primary" type="button">
+                  <button className="btn btn-primary" type="button">
                     Save changes
                   </button>
                 </form>
