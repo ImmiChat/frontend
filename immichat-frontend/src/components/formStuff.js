@@ -1,36 +1,28 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
-import CountryDropdown from "country-dropdown-with-flags-for-react";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
 
 const move = keyframes`
 0%{
     opacity:0;
-
 }
 95%{
     opacity:1;
-
 }
-
 `;
 const BackgroundBox = styled.div`
-  background-color: #50c878;
-  height: 60vh;
-  width: 50%;
-
+  background-color: #9966CC;
+  height: 90vh;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin: 15rem auto;
-
   position: relative;
   border-radius: 23px;
   border: 1px solid #053271;
-
   .text1 {
     z-index: ${(props) => (props.clicked ? "-700" : "700")};
     transform: ${(props) =>
@@ -38,16 +30,13 @@ const BackgroundBox = styled.div`
     transition: transform 1s ease-in-out;
     animation: ${(props) => (props.clicked ? move : "none")} 1.5s;
   }
-
   .text2 {
     z-index: ${(props) => (props.clicked ? "700" : "-700")};
     animation: ${(props) => (props.clicked ? "none" : move)} 1.5s;
-
     transform: ${(props) =>
       props.clicked ? "translateX(-100%)" : "translateX(0%)"};
     transition: transform 1s ease-in-out;
   }
-
   .signin {
     position: absolute;
     top: 0%;
@@ -58,6 +47,7 @@ const BackgroundBox = styled.div`
   }
   .signup {
     position: absolute;
+    width: 35%;
     top: 0%;
     text-align: center;
     z-index: ${(props) => (props.clicked ? "500" : "-500")};
@@ -73,12 +63,10 @@ const Box1 = styled.div`
   position: absolute;
   right: 0;
   top: 0;
-
   z-index: 600;
   transform: ${(props) =>
     props.clicked ? "translateX(-122%)" : "translateX(0%)"};
   transition: transform 1s;
-
   border-radius: ${(props) =>
     props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
 `;
@@ -92,7 +80,6 @@ const Form = styled.form`
   height: 100%;
   padding: 0 4rem;
   font-family: "Courier New", monospace;
-
   /* z-index: 100; */
 `;
 
@@ -100,11 +87,9 @@ const Input = styled.input`
   background-color: #fff;
   border: none;
   border-bottom: 2px solid #053271;
-
   padding: 1rem 2rem;
   margin: 0.5rem 0;
   width: 100%;
-
   &:focus {
     outline: none;
     border: none;
@@ -122,19 +107,15 @@ const Button = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   letter-spacing: 1px;
-
   box-shadow: 0 7px #999;
-
   &:hover {
     background-color: #1b1b1b;
   }
   &:active {
     background-color: black;
-
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
-
   &:focus {
     outline: none;
   }
@@ -160,19 +141,14 @@ const ButtonAnimate = styled.button`
   top: 70%;
   border: none;
   cursor: pointer;
-
   right: ${(props) => (props.clicked ? "52%" : "42%")};
-
   transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
-
   transition: all 1.5s;
   background-color: transparent;
-
   &::before {
     content: "😜";
     font-size: 4rem;
   }
-
   &:focus {
     outline: none;
   }
@@ -181,18 +157,17 @@ const ButtonAnimate = styled.button`
 const Text = styled.div`
   position: absolute;
   z-index: 1000;
-  font-size: 2.7rem;
+  font-size: 2.25rem;
   display: flex;
   flex-direction: column;
+  letter-spacing: 0.2rem;
   color: #000;
   font-family: "Brush Script MT", cursive;
-
   .attention {
     font-size: 2.5rem;
     position: relative;
     margin-top: 2rem;
   }
-
   .attention-icon {
     position: absolute;
     right: ${(props) => (props.clicked ? "0" : "none")};
@@ -223,7 +198,6 @@ function FormComponent() {
     lastName: "",
     email: "",
     password: "",
-    countryofOrigin: "",
   });
 
   const handleSignupFormChange = (event) => {
@@ -332,15 +306,6 @@ function FormComponent() {
             value={signupForm.password}
             onChange={handleSignupFormChange}
           />
-          <br />
-          <h2>Choose your country or territory:</h2>
-          <CountryDropdown
-            id="countries"
-            className="countryForm"
-            preferredCountries={["us", "ca"]}
-            value={signupForm.countryofOrigin}
-            onChange={handleSignupFormChange}
-          ></CountryDropdown>
           <Link href="#" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
           </Link>

@@ -1,91 +1,64 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { AccountCircle } from "@mui/icons-material";
-import Profile from "./Profile";
+import AuthenticationContext from "../context/AuthenticationContext";
+// import { useState } from "react";
+import { useForm } from "react-hook-form";
+import './profilepage.css'
 
 const ProfilePage = () => {
-  const style = {
-    width: "50%",
-    height: "600px",
-  };
-  const iconStyle = {
-    width: "100px",
-    height: "100px",
-  };
+  const { user, setUser } = React.useContext(AuthenticationContext);
+  const { register } = useForm();
+  // const [profilePageForm, setProfilePageForm] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   username: "",
+  //   email: "",
+  //   country: "",
+  // });
 
+  const handleProfilePageChange = (e) => {
+    e.preventDefault();
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+  
   return (
     <div>
-      <Navbar />
-      <div className="container-xl px-4 mt-4">
-        <div className="row">
-          <div className="col-xl-3">
-            <Profile height="400px" />
-          </div>
-          <div className="col-xl-8">
-            <div className="card mb-4">
-              <div className="card-header">Account Details</div>
-              <div className="card-body">
-                <form>
-                  <div className="row gx-3 mb-3">
-                    <div className="col-md-6">
-                      <AccountCircle style={iconStyle} />
-                      <input type="file" />
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="small mb-1" for="inputFirstName">
-                        First name
-                      </label>
-                      <input
-                        className="form-control"
-                        id="inputFirstName"
-                        type="text"
-                        placeholder="Enter your first name"
-                        value="Valerie"
-                      />
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="small mb-1" for="inputLastName">
-                        Last name
-                      </label>
-                      <input
-                        className="form-control"
-                        id="inputLastName"
-                        type="text"
-                        placeholder="Enter your last name"
-                        value="Luna"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row gx-3 mb-3">
-                    <div className="col-md-6">
-                      <label className="small mb-1" for="Country">
-                        Country
-                      </label>
-                      <input
-                        className="form-control"
-                        id="Country"
-                        type="text"
-                        placeholder="Country"
-                        value="United States"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="row gx-3 mb-3"></div>
-
-                  <button className="btn btn-primary" type="button">
-                    Save changes
-                  </button>
-                </form>
-              </div>
+      <Navbar/>
+    <div className="container rounded bg-white mt-5 mb-5">
+    <div className="row">
+        <div className="col-md-3 border-right">
+            <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt=''/>
+            <span className="font-weight-bold">John Doe</span><span className="text-black-50">johndoe@example.com</span>
+            <span> </span>
             </div>
-          </div>
         </div>
-      </div>
+        <div className="col-md-5 border-right">
+            <div className="p-3 py-5">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                    <h4 className="text-right">Profile Settings</h4>
+                </div>
+                <div id="wrapper">
+                <div className="row mt-2">
+                    <div className="col-md-6"><label className="labels">First Name</label><input type="text" className="form-control" placeholder="First Name" value={user.first_name} onChange={handleProfilePageChange} ref={register({ required: true })}/></div>
+                    <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" value={user.last_name} onChange={handleProfilePageChange} placeholder="Last Name" ref={register({ required: true })}/></div>
+                </div>
+                <div className="row mt-3">
+                <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" value={user.user_name} onChange={handleProfilePageChange} placeholder="Username" ref={register({ required: true })}/></div>
+                    <div className="col-md-12"><label className="labels">Email</label><input type="text" className="form-control" placeholder="Email" value={user.email} onChange={handleProfilePageChange} ref={register({ required: true })}/></div>
+                </div>
+                <div className="row mt-3">
+                    <div className="col-md-6"><label className="labels">Country of Origin</label><input type="text" className="form-control" placeholder="Country" value={user.country} onChange={handleProfilePageChange} ref={register({ required: true })}/></div>
+                </div>
+                <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+</div>
   );
 };
 
