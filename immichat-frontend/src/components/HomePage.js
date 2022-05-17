@@ -2,6 +2,7 @@ import React from 'react';
 import CreatePost from './CreatePost';
 import Sidebar from './Sidebar';
 import Feed from './Feed';
+import RightSideBar from './RightSideBar';
 
 const HomePage = (props) => {
     return (
@@ -13,7 +14,9 @@ const HomePage = (props) => {
                 <CreatePost />
                 <Feed />
             </div>
-            <div className="col-lg-3 bg-muted"></div>
+            <div className="col-lg-4 bg-muted border-border-dark">
+                <RightSideBar />
+            </div>
             
         </div>  
     );
