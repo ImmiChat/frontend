@@ -13,13 +13,13 @@ const move = keyframes`
 }
 `;
 const BackgroundBox = styled.div`
-  background-color: #9966CC;
+  background-color: #9966cc;
   height: 90vh;
   width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15rem auto;
+  margin: 20px auto;
   position: relative;
   border-radius: 23px;
   border: 1px solid #053271;

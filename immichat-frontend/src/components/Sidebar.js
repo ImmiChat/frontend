@@ -8,7 +8,7 @@ const Sidebar = (props) => {
       </h3>
       <h6 className="py-3 fw-bolder">Menu</h6>
       <nav className="d-flex flex-column">
-        <a href="" className="py-3">
+        <a href="/" className="py-3">
           <Home className="text-secondary" />
           <span className="px-3">Home</span>
         </a>
@@ -16,7 +16,7 @@ const Sidebar = (props) => {
           <Message className="text-secondary" />
           <span className="px-3">Messages</span>
         </a>
-        <a href="" className="py-3">
+        <a href="/profile" className="py-3">
           <AccountCircle className="text-secondary" />
           <span className="px-3">Profile</span>
         </a>
@@ -27,9 +27,9 @@ const Sidebar = (props) => {
       </nav>
       <h6 className="py-3 fw-bolder">Account</h6>
       <a href="" className="py-3">
-          <AccountCircle className="text-secondary" />
-          <span className="px-3">Full name</span>
-        </a>
+        <AccountCircle className="text-secondary" />
+        <span className="px-3">Full name</span>
+      </a>
     </div>
   );
 };

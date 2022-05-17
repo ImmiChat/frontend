@@ -1,68 +1,53 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-
-/* *{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  } */
-
-/* body {
-    background: url('https://wallpapercave.com/wp/wp5910934.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-} */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
 .form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8
+  box-shadow: none;
+  border-color: #ba68c8;
 }
 
 .profile-button {
-    background: #9966CC;
-    box-shadow: none;
-    border: none
+  background: #9966cc;
+  box-shadow: none;
+  border: none;
 }
 
 .profile-button:hover {
-    background: #682773
+  background: #682773;
 }
 
 .profile-button:focus {
-    background: #682773;
-    box-shadow: none
+  background: #682773;
+  box-shadow: none;
 }
 
 .profile-button:active {
-    background: #682773;
-    box-shadow: none
+  background: #682773;
+  box-shadow: none;
 }
 
 .back:hover {
-    color: #682773;
-    cursor: pointer
+  color: #682773;
+  cursor: pointer;
 }
 
 .add-experience:hover {
-    background: #9966CC;
-    color: #fff;
-    cursor: pointer;
-    border: solid 1px #9966CC;
+  background: #9966cc;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #9966cc;
 }
 
-.text-right{
-    color: #9966CC;
-    font-size: 45px;
+.text-right {
+  color: #9966cc;
+  font-size: 35px;
 }
 
-.labels{
-    font-size: 12.5px;
+.labels {
+  font-size: 12.5px;
 }
 
-#wrapper{
-    width: 450px;
-    background: #fff;
-    padding: 5px;
+#wrapper {
+  width: 450px;
+  background: #fff;
+  padding: 5px;
 }
