@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import AuthenticationContext from "../context/AuthenticationContext";
+import { Navigate } from "react-router-dom";
 import "./profilepage.css";
 import RightSideBar from "./RightSideBar";
 import Sidebar from "./Sidebar";
 
 const ProfilePage = () => {
+  const { user } = React.useContext(AuthenticationContext);
   const [profilePageForm, setProfilePageForm] = useState({
     firstName: "",
     lastName: "",
@@ -22,7 +25,9 @@ const ProfilePage = () => {
     });
   };
 
-  return (
+  return !user.isAuth ? (
+    <Navigate to="/auth" />
+  ) : (
     <div id="profile" className="d-flex justify-content-center">
       <div className="col-2 py-5 bg-white ">
         <Sidebar />

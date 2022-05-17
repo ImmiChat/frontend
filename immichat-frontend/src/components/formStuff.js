@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
+import { useNavigate, Navigate } from "react-router-dom";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
 
@@ -177,6 +178,8 @@ const Text = styled.div`
 `;
 
 function FormComponent() {
+  const { user } = React.useContext(AuthenticationContext);
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [signinForm, setSigninForm] = useState({
     email: "",
@@ -211,7 +214,7 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("/register", {
+    const response = await fetch("http://localhost:9000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -225,7 +228,7 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("/login", {
+    const response = await fetch("http://localhost:9000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -234,15 +237,18 @@ function FormComponent() {
     });
     const data = await response.json();
     setSigninMessage(data.message);
-
-    if (data.token) {
-      setToken(data.token);
-      setUser(data.user);
+    if (!data.token) {
+      return;
     }
+    setToken(data.token);
+    setUser(data.user);
     window.localStorage.setItem("refreshToken", data.refreshToken);
+    navigate(`/`);
   };
 
-  return (
+  return user.isAuth ? (
+    <Navigate to="/" />
+  ) : (
     <div style={{ fontSize: "62.5%" }}>
       <BackgroundBox clicked={click}>
         <ButtonAnimate clicked={click} onClick={handleClick} />
