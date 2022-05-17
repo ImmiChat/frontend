@@ -14,7 +14,7 @@ const HomePage = (props) => {
                 <CreatePost />
                 <Feed />
             </div>
-            <div className="col-lg-4 bg-muted border-border-dark">
+            <div className="col-lg-3 bg-muted">
                 <RightSideBar />
             </div>
             
