@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
-import CountryDropdown from "country-dropdown-with-flags-for-react";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
 
@@ -14,7 +13,7 @@ const move = keyframes`
 }
 `;
 const BackgroundBox = styled.div`
-  background-color: #50c878;
+  background-color: #9966CC;
   height: 90vh;
   width: 80%;
   display: flex;
@@ -199,7 +198,6 @@ function FormComponent() {
     lastName: "",
     email: "",
     password: "",
-    countryofOrigin: "",
   });
 
   const handleSignupFormChange = (event) => {
@@ -308,14 +306,6 @@ function FormComponent() {
             value={signupForm.password}
             onChange={handleSignupFormChange}
           />
-          <h2>Choose your country or territory:</h2>
-          <CountryDropdown
-            id="countries"
-            className="countryForm"
-            preferredCountries={["us", "ca"]}
-            value={signupForm.countryofOrigin}
-            onChange={handleSignupFormChange}
-          ></CountryDropdown>
           <Link href="#" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
           </Link>
