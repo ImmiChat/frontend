@@ -2,7 +2,7 @@ import { Home, Message, AccountCircle, Settings } from "@mui/icons-material";
 
 const Sidebar = (props) => {
   return (
-    <div className="px-4">
+    <div className="px-5">
       <h3 className="fw-bolder" style={{ color: "#ae83f4" }}>
         Immichat
       </h3>
