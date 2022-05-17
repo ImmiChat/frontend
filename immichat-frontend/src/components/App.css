@@ -1,10 +1,27 @@
-body {
-  background-color: #f2f5fe;
-}
 a {
   text-decoration:  none;
   color:black;
 }
 a:hover * {
   color: #ae83f4;
+}
+
+.icon {
+  color: #ae83f4;
+}
+
+* {
+  font-family: “Helvetica Neue”,Helvetica,Arial,sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.post {
+  background-color:  #ae83f4;
+}
+
+.small {
+  font-size: 10px;
+}
+#metric {
+  font-size:12px;
 }
