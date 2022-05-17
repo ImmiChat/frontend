@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./Navbar";
 import { useState } from "react";
 import './profilepage.css'
 
@@ -23,7 +22,6 @@ const ProfilePage = () => {
   
   return (
     <div>
-    <Navbar/>
     <div className="container rounded bg-white mt-5 mb-5">
     <div className="row">
         <div className="col-md-3 border-right">
