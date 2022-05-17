@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
-import CountryDropdown from "country-dropdown-with-flags-for-react";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
 
@@ -333,14 +332,14 @@ function FormComponent() {
             onChange={handleSignupFormChange}
           />
           <br />
-          <h2>Choose your country or territory:</h2>
+          {/* <h2>Choose your country or territory:</h2>
           <CountryDropdown
             id="countries"
             className="countryForm"
             preferredCountries={["us", "ca"]}
             value={signupForm.countryofOrigin}
             onChange={handleSignupFormChange}
-          ></CountryDropdown>
+          ></CountryDropdown> */}
           <Link href="#" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
           </Link>
