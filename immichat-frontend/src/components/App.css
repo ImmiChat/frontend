@@ -35,3 +35,15 @@ li {
     display: none;
   }
 }
+
+.edit:hover {
+  background-color: grey;
+}
+.delete:hover {
+  background-color: red;
+}
+
+.list > li {
+  padding:0;
+  font-size: 12px;
+}
