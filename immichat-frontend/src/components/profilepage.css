@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 .form-control:focus {
   box-shadow: none;
   border-color: #ba68c8;
@@ -39,7 +43,7 @@
 
 .text-right {
   color: #9966cc;
-  font-size: 35px;
+  font-size: 45px;
 }
 
 .labels {
@@ -50,4 +54,9 @@
   width: 450px;
   background: #fff;
   padding: 5px;
+}
+
+#container{
+    padding-top: 55px;
+    margin-left: 50px;
 }

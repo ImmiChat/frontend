@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import AuthenticationContext from "../context/AuthenticationContext";
-import { Navigate } from "react-router-dom";
+// import AuthenticationContext from "../context/AuthenticationContext";
+// import { Navigate } from "react-router-dom";
 import "./profilepage.css";
 import RightSideBar from "./RightSideBar";
 import Sidebar from "./Sidebar";
 
 const ProfilePage = () => {
-  const { user } = React.useContext(AuthenticationContext);
+  // const { user } = React.useContext(AuthenticationContext);
   const [profilePageForm, setProfilePageForm] = useState({
     firstName: "",
     lastName: "",
@@ -31,6 +31,7 @@ const ProfilePage = () => {
         <Sidebar />
       </div>
       <div className="rounded bg-white col-6  border-start border-end border-dark d-flex justify-content-center">
+      <div id="container">
         <div className="row">
           <div className="col-md-3 border-right">
             <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -57,8 +58,10 @@ const ProfilePage = () => {
                     <input
                       type="text"
                       className="form-control"
+                      id="fname"
                       placeholder="First Name"
                       defaultValue={profilePageForm.firstName}
+                      onChange={handleProfilePageChange}
                     />
                   </div>
                   <div className="col-md-6">
@@ -66,6 +69,7 @@ const ProfilePage = () => {
                     <input
                       type="text"
                       className="form-control"
+                      id="lname"
                       defaultValue={profilePageForm.lastName}
                       onChange={handleProfilePageChange}
                       placeholder="Last Name"
@@ -79,6 +83,7 @@ const ProfilePage = () => {
                       type="email"
                       className="form-control"
                       placeholder="Email"
+                      id="email"
                       defaultValue={profilePageForm.email}
                       onChange={handleProfilePageChange}
                     />
@@ -88,6 +93,7 @@ const ProfilePage = () => {
                     <input
                       type="text"
                       className="form-control"
+                      id="language"
                       defaultValue={profilePageForm.language}
                       onChange={handleProfilePageChange}
                       placeholder="Language"
@@ -100,6 +106,7 @@ const ProfilePage = () => {
                     <input
                       type="text"
                       className="form-control"
+                      id="country"
                       placeholder="Country"
                       defaultValue={profilePageForm.country}
                       onChange={handleProfilePageChange}
@@ -111,10 +118,12 @@ const ProfilePage = () => {
                   <input
                     type="text"
                     className="form-control"
+                    id="bio"
                     placeholder="Bio"
                     defaultValue={profilePageForm.bio}
                     onChange={handleProfilePageChange}
                   />
+                </div>
                 </div>
                 <div className="mt-5 text-center">
                   <button
