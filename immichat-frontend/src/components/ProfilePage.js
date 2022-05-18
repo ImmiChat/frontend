@@ -25,9 +25,7 @@ const ProfilePage = () => {
     });
   };
 
-  return !user.isAuth ? (
-    <Navigate to="/auth" />
-  ) : (
+  return (
     <div id="profile" className="d-flex justify-content-center">
       <div className="col-2 py-5 bg-white ">
         <Sidebar />

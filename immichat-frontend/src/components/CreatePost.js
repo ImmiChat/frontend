@@ -11,12 +11,13 @@ import FeedContext from "../context/FeedContext";
 
 const CreatePost = (props) => {
   const { user } = React.useContext(AuthenticationContext);
-  const { setFeed } = React.useContext(FeedContext);
+  const { feed, setFeed } = React.useContext(FeedContext);
   const [body, setBody] = React.useState("");
   const handleChange = (event) => setBody(event.target.value);
   const handleSubmit = (event) => {
     event.preventDefault();
     async function createNewPost() {
+      console.log(body, user.id)
       const response = await fetch("http://localhost:9000/posts", {
         method: "POST",
         headers: {
@@ -28,7 +29,10 @@ const CreatePost = (props) => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      data[0].first_name = user.first_name;
+      data[0].last_name = user.last_name;
+      console.log(data[0])
+      setFeed([data[0], ...feed])
     }
     createNewPost();
   };
