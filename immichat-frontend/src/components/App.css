@@ -1,6 +1,6 @@
 a {
-  text-decoration:  none;
-  color:black;
+  text-decoration: none;
+  color: black;
 }
 a:hover * {
   color: #ae83f4;
@@ -11,21 +11,27 @@ a:hover * {
 }
 
 * {
-  font-family: “Helvetica Neue”,Helvetica,Arial,sans-serif;
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
   letter-spacing: 1.5px;
 }
 
 .post {
-  background-color:  #ae83f4;
+  background-color: #ae83f4;
 }
 
 .small {
   font-size: 10px;
 }
 #metric {
-  font-size:12px;
+  font-size: 12px;
 }
 
 li {
   list-style: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  #hide * {
+    display: none;
+  }
 }

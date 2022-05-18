@@ -4,14 +4,17 @@ import ReactDOM from "react-dom/client";
 import App from "./components/App";
 import AuthenticationContextProvider from "./context/AuthenticationContextProvider";
 import { BrowserRouter } from "react-router-dom";
+import FeedContextProvider from "./context/FeedContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthenticationContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <FeedContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FeedContextProvider>
     </AuthenticationContextProvider>
   </React.StrictMode>
 );
