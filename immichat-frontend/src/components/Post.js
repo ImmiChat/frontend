@@ -11,32 +11,32 @@ import React from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
 
 const Post = ({ info }) => {
-  const { feed, setFeed } = React.useContext(FeedContext);
+  const { feed, setFeed, feedMetric } = React.useContext(FeedContext);
   const { user } = React.useContext(AuthenticationContext);
   const [modalBody, setModalBody] = React.useState(info.body);
 
   const handleUpdatePost = (event) => {
     async function updatePost(postId) {
       const response = await fetch(`http://localhost:9000/posts/${postId}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body: JSON.stringify({body: modalBody})
+        body: JSON.stringify({ body: modalBody }),
       });
 
       const data = await response.json();
-      console.log(data[0])
+      console.log(data[0]);
       const id = data[0].id;
-      const index = feed.findIndex(post => {
-        return post.id === id
+      const index = feed.findIndex((post) => {
+        return post.id === id;
       });
       const newFeed = [...feed];
       feed[index].body = data[0].body;
       setFeed(newFeed);
     }
     updatePost(info.id);
-  }
+  };
 
   const handleDelete = (event) => {
     async function deletePost(id) {
@@ -124,7 +124,13 @@ const Post = ({ info }) => {
                 ></button>
               </div>
               <div className="modal-body m-auto">
-                <textarea type="text" rows={5} cols={50} value={modalBody} onChange={(event) => setModalBody(event.target.value)} />
+                <textarea
+                  type="text"
+                  rows={5}
+                  cols={50}
+                  value={modalBody}
+                  onChange={(event) => setModalBody(event.target.value)}
+                />
               </div>
               <div className="modal-footer">
                 <button
@@ -134,7 +140,12 @@ const Post = ({ info }) => {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary" onClick={handleUpdatePost} data-bs-dismiss="modal">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleUpdatePost}
+                  data-bs-dismiss="modal"
+                >
                   Save changes
                 </button>
               </div>
@@ -149,8 +160,12 @@ const Post = ({ info }) => {
 
       <div className="d-flex justify-content-between">
         <p id="metric">
-          <span className="px-2">23 Likes</span>
-          <span>1 Comment</span>
+          {feedMetric[info.id] && feedMetric[info.id][1] && (
+            <span className="px-2">{feedMetric[info.id][1]} Likes</span>
+          )}
+          {feedMetric[info.id] && feedMetric[info.id][0] && (
+            <span className="px-2">{feedMetric[info.id][0]} Comments</span>
+          )}
         </p>
         <div>
           <Comment className="px-2 icon" style={{ width: "50px" }} />

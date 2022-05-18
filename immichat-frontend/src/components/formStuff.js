@@ -244,7 +244,9 @@ function FormComponent() {
     setToken(data.token);
     setUser(data.user);
     window.localStorage.setItem("refreshToken", data.refreshToken);
-    navigate(`/`);
+    setTimeout(() => {
+      navigate(`/`);
+    }, 3000);
   };
 
   return user.isAuth ? (
@@ -275,7 +277,7 @@ function FormComponent() {
           <Link href="#">
             <b>{signinMessage || "Forgot Your Password?"}</b>
           </Link>
-          <LanguageChange/>
+          <LanguageChange />
           <Button>Sign In</Button>
         </Form>
 

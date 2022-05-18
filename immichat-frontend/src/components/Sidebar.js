@@ -1,4 +1,5 @@
 import { Home, Message, AccountCircle, Settings } from "@mui/icons-material";
+import LanguageChange from "./translate";
 
 const Sidebar = (props) => {
   return (
@@ -30,6 +31,9 @@ const Sidebar = (props) => {
         <AccountCircle className="text-secondary" />
         <span className="px-3">Full name</span>
       </a>
+      <div className="mt-5">
+        <LanguageChange />
+      </div>
     </div>
   );
 };
