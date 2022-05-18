@@ -21,8 +21,8 @@ const Post = ({ info }) => {
           <span>1 Comment</span>
         </p>
         <div>
-          <Comment className="px-2 icon" />
-          <ThumbUpAlt className="px-2 icon" />
+          <Comment className="px-2 icon" style={{ width: "50px" }} />
+          <ThumbUpAlt className="px-2 icon" style={{ width: "50px" }} />
         </div>
       </div>
     </div>
