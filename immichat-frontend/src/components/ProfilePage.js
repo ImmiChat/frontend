@@ -5,6 +5,8 @@ import { useState } from "react";
 import "./profilepage.css";
 import RightSideBar from "./RightSideBar";
 import Sidebar from "./Sidebar";
+import LanguageChange from "./translate";
+import './translate.css'
 
 const ProfilePage = () => {
   // const { user } = React.useContext(AuthenticationContext);
@@ -124,6 +126,9 @@ const ProfilePage = () => {
                     onChange={handleProfilePageChange}
                   />
                 </div>
+                </div>
+                <div className="translator">
+                <LanguageChange/>
                 </div>
                 <div className="mt-5 text-center">
                   <button

@@ -4,6 +4,7 @@ import AuthenticationContext from "../context/AuthenticationContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
+import LanguageChange from "./translate";
 
 const move = keyframes`
 0%{
@@ -274,6 +275,7 @@ function FormComponent() {
           <Link href="#">
             <b>{signinMessage || "Forgot Your Password?"}</b>
           </Link>
+          <LanguageChange/>
           <Button>Sign In</Button>
         </Form>
 
