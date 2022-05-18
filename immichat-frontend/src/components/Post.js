@@ -1,19 +1,21 @@
 import {
   AccountCircle,
   ThumbUpAlt,
-  Comment,
+  Comment as CommentIcon,
   Edit,
   Delete,
 } from "@mui/icons-material";
 import FeedContext from "../context/FeedContext";
-import convertTimeStamp from "../utils/convertTimeStamp";
 import React from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
+import Comment from "./Comment";
+const { DateTime } = require("luxon");
 
 const Post = ({ info }) => {
   const { feed, setFeed, feedMetric } = React.useContext(FeedContext);
   const { user } = React.useContext(AuthenticationContext);
-  const [modalBody, setModalBody] = React.useState(info.body);
+  const [comments, setComments] = React.useState([]);
+  const [modalBody, setModalBody] = React.useState("");
 
   const handleUpdatePost = (event) => {
     async function updatePost(postId) {
@@ -54,9 +56,21 @@ const Post = ({ info }) => {
     }
     deletePost(event.target.id);
   };
+
+  const handleCommentClick = (event) => {
+    async function getCommentsOfPost(postId) {
+      const response = await fetch(
+        `http://localhost:9000/posts/${postId}/comments`
+      );
+      const data = await response.json();
+      setComments(data);
+    }
+    getCommentsOfPost(info.id);
+  };
+
   return (
-    <div className="border rounded border-dark px-3 my-5" id={info.id}>
-      <div className="d-flex justify-content-between align-items-center">
+    <div className="border rounded border-secondary px-3 my-5" id={info.id}>
+      <div className="d-flex justify-content-between align-items-center ">
         <div className="d-flex align-items-center">
           <AccountCircle style={{ width: "50px", height: "75px" }} />
           <span className="fw-bold px-2">
@@ -155,10 +169,14 @@ const Post = ({ info }) => {
       </div>
       <p className="px-1">{info.body}</p>
       <p className="px-1 text-secondary small">
-        {convertTimeStamp(info.updated_at)}
+        {DateTime.fromISO(info.updated_at).toRelative()}
       </p>
 
-      <div className="d-flex justify-content-between">
+      <div
+        className={`d-flex justify-content-between ${
+          comments.length && "border-bottom border-secondary"
+        }`}
+      >
         <p id="metric">
           {feedMetric[info.id] && feedMetric[info.id][1] && (
             <span className="px-2">{feedMetric[info.id][1]} Likes</span>
@@ -168,10 +186,16 @@ const Post = ({ info }) => {
           )}
         </p>
         <div>
-          <Comment className="px-2 icon" style={{ width: "50px" }} />
-          <ThumbUpAlt className="px-2 icon" style={{ width: "50px" }} />
+          <button className="btn" onClick={handleCommentClick}>
+            <CommentIcon className="icon" style={{ width: "50px" }} />
+          </button>
+          <button className="btn">
+            <ThumbUpAlt className="icon" style={{ width: "50px" }} />
+          </button>
         </div>
       </div>
+      {comments.length > 0 &&
+        comments.map((comment) => <Comment info={comment} />)}
     </div>
   );
 };
