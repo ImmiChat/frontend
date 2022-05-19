@@ -41,7 +41,7 @@ const Post = ({ info }) => {
       const data = await response.json();
       data[0].first_name = user.first_name;
       data[0].last_name = user.last_name;
-      setComments([...comments, data[0]])
+      setComments([...comments, data[0]]);
     }
     postComment(info.id);
     const map = { ...feedMetric };
@@ -51,7 +51,7 @@ const Post = ({ info }) => {
       map[info.id] = [1, 0];
     }
     setFeedMetric(map);
-    setCommentInput('');
+    setCommentInput("");
   };
 
   const handleUpdatePost = (event) => {
