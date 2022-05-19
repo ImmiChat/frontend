@@ -114,7 +114,9 @@ const Post = ({ info }) => {
           <span className="fw-bold px-2">
             {info.first_name} {info.last_name}
           </span>
+          <span className="px-2 icon">#{info.topic}</span>
         </div>
+
         {user.id === info.user_id && (
           <div className="dropdown">
             <button
@@ -155,6 +157,7 @@ const Post = ({ info }) => {
             </ul>
           </div>
         )}
+
         <div
           class="modal fade"
           id="exampleModal"

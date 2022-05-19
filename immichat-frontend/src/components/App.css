@@ -10,6 +10,10 @@ a:hover * {
   color: #ae83f4;
 }
 
+.darkPurple {
+  color: #6a3786;
+}
+
 * {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
   letter-spacing: 1.5px;

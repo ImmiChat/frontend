@@ -13,11 +13,15 @@ const CreatePost = (props) => {
   const { user } = React.useContext(AuthenticationContext);
   const { feed, setFeed } = React.useContext(FeedContext);
   const [body, setBody] = React.useState("");
+  const [topic, setTopic] = React.useState("");
   const handleChange = (event) => setBody(event.target.value);
+  const handleTopicChange = (event) => {
+    setTopic(event.target.id);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     async function createNewPost() {
-      console.log(body, user.id)
+      console.log(body, user.id);
       const response = await fetch("http://localhost:9000/posts", {
         method: "POST",
         headers: {
@@ -26,16 +30,17 @@ const CreatePost = (props) => {
         body: JSON.stringify({
           content: body,
           id: user.id,
+          topic,
         }),
       });
       const data = await response.json();
       data[0].first_name = user.first_name;
       data[0].last_name = user.last_name;
-      console.log(data[0])
-      setFeed([data[0], ...feed])
+      console.log(data[0]);
+      setFeed([data[0], ...feed]);
     }
     createNewPost();
-    setBody('')
+    setBody("");
   };
 
   return (
@@ -59,9 +64,40 @@ const CreatePost = (props) => {
           />
           <div className="d-flex justify-content-between align-items-center pt-3">
             <div>
-              <ImageSearch className="px-1 icon" />
-              <Tag className="px-1 icon" />
-              <InsertEmoticon className="px-1 icon" />
+              <div class="btn-group dropend">
+                <button
+                  type="button"
+                  class="btn btn-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Topic
+                </button>
+                {topic && <span className="px-3 icon">#{topic}</span>}
+                <ul class="dropdown-menu">
+                  <li
+                    className="dropdown-item"
+                    id="Jobs"
+                    onClick={handleTopicChange}
+                  >
+                    Jobs
+                  </li>
+                  <li
+                    className="dropdown-item"
+                    id="Housing"
+                    onClick={handleTopicChange}
+                  >
+                    Housing
+                  </li>
+                  <li
+                    className="dropdown-item"
+                    id="Healthcare"
+                    onClick={handleTopicChange}
+                  >
+                    Healthcare
+                  </li>
+                </ul>
+              </div>
             </div>
             <button className="rounded-pill btn post text-white px-5 py-2">
               Post
