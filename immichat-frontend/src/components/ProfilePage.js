@@ -11,15 +11,13 @@ import "./translate.css";
 import { AccountCircle } from "@mui/icons-material";
 
 const ProfilePage = () => {
-  const { user } = React.useContext(AuthenticationContext);
+  const { user, setUser } = React.useContext(AuthenticationContext);
   const [profilePageForm, setProfilePageForm] = useState({
-    firstName: "",
-    lastName: "",
-    language: "",
-    country: "",
-    bio: "",
-    file: "",
-    fileName: "",
+    first_name: user.first_name,
+    last_name: user.last_name,
+    language: user.language,
+    country_of_origin: user.country_of_origin,
+    bio: user.bio,
   });
 
   const handleProfilePageChange = (e) => {
@@ -32,16 +30,22 @@ const ProfilePage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    async function updateProfile(userID) {
+      const response = await fetch(`http://localhost:9000/user/${userID}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(profilePageForm),
+      });
+      const data = await response.json();
+      setUser(data[0]);
+    }
+    updateProfile(user.id);
     /* console.log(profilePageForm.file)
     // const formData = new FormData();
     // formData.append("file", profilePageForm.file);
-    // fetch(`http://localhost:9000/users/${user.id}`, {
-    //   method:"PUT",
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    //   body: formData
-    // })
+    
     // console.log(formData)
     */
   };
@@ -104,8 +108,9 @@ const ProfilePage = () => {
                           type="text"
                           className="form-control"
                           id="fname"
+                          name="first_name"
                           placeholder="First Name"
-                          defaultValue={profilePageForm.firstName}
+                          value={profilePageForm.first_name}
                           onChange={handleProfilePageChange}
                         />
                       </div>
@@ -115,7 +120,8 @@ const ProfilePage = () => {
                           type="text"
                           className="form-control"
                           id="lname"
-                          defaultValue={profilePageForm.lastName}
+                          name="last_name"
+                          value={profilePageForm.last_name}
                           onChange={handleProfilePageChange}
                           placeholder="Last Name"
                         />
@@ -128,7 +134,8 @@ const ProfilePage = () => {
                           type="text"
                           className="form-control"
                           id="language"
-                          defaultValue={profilePageForm.language}
+                          name="language"
+                          value={profilePageForm.language}
                           onChange={handleProfilePageChange}
                           placeholder="Language"
                         />
@@ -140,7 +147,8 @@ const ProfilePage = () => {
                           className="form-control"
                           id="country"
                           placeholder="Country"
-                          defaultValue={profilePageForm.country}
+                          name="country_of_origin"
+                          value={profilePageForm.country_of_origin}
                           onChange={handleProfilePageChange}
                         />
                       </div>
@@ -152,11 +160,12 @@ const ProfilePage = () => {
                         type="text"
                         className="form-control"
                         id="bio"
+                        name="bio"
                         placeholder="Bio"
-                        defaultValue={profilePageForm.bio}
+                        value={profilePageForm.bio}
                         onChange={handleProfilePageChange}
                         rows={5}
-                      />
+                      ></textarea>
                     </div>
                   </div>
 
