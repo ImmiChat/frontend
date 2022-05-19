@@ -35,6 +35,7 @@ const CreatePost = (props) => {
       setFeed([data[0], ...feed])
     }
     createNewPost();
+    setBody('')
   };
 
   return (

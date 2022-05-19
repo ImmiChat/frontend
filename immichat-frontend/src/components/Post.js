@@ -12,10 +12,47 @@ import Comment from "./Comment";
 const { DateTime } = require("luxon");
 
 const Post = ({ info }) => {
-  const { feed, setFeed, feedMetric } = React.useContext(FeedContext);
+  const { feed, setFeed, feedMetric, setFeedMetric } =
+    React.useContext(FeedContext);
   const { user } = React.useContext(AuthenticationContext);
   const [comments, setComments] = React.useState([]);
   const [modalBody, setModalBody] = React.useState("");
+  const [commentClicked, setCommentClicked] = React.useState(false);
+  const [commentInput, setCommentInput] = React.useState("");
+
+  const handleCommentChange = (event) => setCommentInput(event.target.value);
+
+  const handlePostComment = (event) => {
+    event.preventDefault();
+    if (commentInput === "") {
+      return;
+    }
+    async function postComment(postId) {
+      const response = await fetch(
+        `http://localhost:9000/posts/${postId}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ body: commentInput, userId: user.id }),
+        }
+      );
+      const data = await response.json();
+      data[0].first_name = user.first_name;
+      data[0].last_name = user.last_name;
+      setComments([...comments, data[0]])
+    }
+    postComment(info.id);
+    const map = { ...feedMetric };
+    if (info.id in map) {
+      map[info.id][0] += 1;
+    } else {
+      map[info.id] = [1, 0];
+    }
+    setFeedMetric(map);
+    setCommentInput('');
+  };
 
   const handleUpdatePost = (event) => {
     async function updatePost(postId) {
@@ -58,6 +95,7 @@ const Post = ({ info }) => {
   };
 
   const handleCommentClick = (event) => {
+    setCommentClicked(!commentClicked);
     async function getCommentsOfPost(postId) {
       const response = await fetch(
         `http://localhost:9000/posts/${postId}/comments`
@@ -174,14 +212,14 @@ const Post = ({ info }) => {
 
       <div
         className={`d-flex justify-content-between ${
-          comments.length && "border-bottom border-secondary"
+          commentClicked && "border-bottom border-secondary"
         }`}
       >
         <p id="metric">
-          {feedMetric[info.id] && feedMetric[info.id][1] && (
+          {feedMetric[info.id] && feedMetric[info.id][1] > 0 && (
             <span className="px-2">{feedMetric[info.id][1]} Likes</span>
           )}
-          {feedMetric[info.id] && feedMetric[info.id][0] && (
+          {feedMetric[info.id] && feedMetric[info.id][0] > 0 && (
             <span className="px-2">{feedMetric[info.id][0]} Comments</span>
           )}
         </p>
@@ -194,8 +232,25 @@ const Post = ({ info }) => {
           </button>
         </div>
       </div>
-      {comments.length > 0 &&
-        comments.map((comment) => <Comment info={comment} />)}
+      {commentClicked && comments.map((comment) => <Comment info={comment} />)}
+      {commentClicked && (
+        <form action="" onSubmit={handlePostComment}>
+          <div className="mt-2 d-flex">
+            <div>
+              <AccountCircle style={{ width: "50px", height: "75px" }} />
+            </div>
+            <input
+              value={commentInput}
+              onChange={handleCommentChange}
+              className="rounded-pill w-100"
+              type="text"
+              name=""
+              id=""
+              placeholder="Write a comment.."
+            />
+          </div>
+        </form>
+      )}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import { AccountCircle } from "@mui/icons-material";
 import { DateTime } from "luxon";
 
 const Comment = ({ info }) => {
-  console.log(info);
   return (
     <div className="mt-2 d-flex">
       <div>
