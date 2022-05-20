@@ -6,6 +6,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import EditProfile from "./ProfilePage";
 import Profile from "./Profile";
+import Settings from "./Settings";
+import Messages from "./Messages";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/auth" element={<FormComponent />} />
       <Route path="/profile/:id" element={<Profile />} />
       <Route path="/profile/:id/edit" element={<EditProfile />}></Route>
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/messages" element={<Messages />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

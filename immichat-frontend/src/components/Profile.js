@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import RightSideBar from "./RightSideBar";
-import { AccountCircle } from "@mui/icons-material";
 import AuthenticationContext from "../context/AuthenticationContext";
 import Feed from "./Feed";
 import { Navigate } from "react-router-dom";

@@ -8,7 +8,6 @@ import Sidebar from "./Sidebar";
 import LanguageChange from "./translate";
 import AuthenticationContext from "../context/AuthenticationContext";
 import "./translate.css";
-import { AccountCircle } from "@mui/icons-material";
 import { useNavigate, Navigate } from "react-router-dom";
 
 const ProfilePage = () => {
