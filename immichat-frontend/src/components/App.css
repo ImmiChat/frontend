@@ -6,12 +6,12 @@ a:hover * {
   color: #ae83f4;
 }
 
-.icon {
-  color: #ae83f4;
+.purpBackground {
+  background-color: #ae83f4;
 }
 
-.darkPurple {
-  color: #6a3786;
+.icon {
+  color: #ae83f4;
 }
 
 * {

@@ -1,18 +1,23 @@
 import React from "react";
+import AuthenticationContext from "../context/AuthenticationContext";
 import FeedContext from "../context/FeedContext";
 import Post from "./Post";
 
 const Feed = (props) => {
   const { feed } = React.useContext(FeedContext);
+  const { user } = React.useContext(AuthenticationContext);
   const [filter, setFilter] = React.useState("All");
-  const posts =
+  let posts =
     filter === "All" ? feed : feed.filter((post) => post.topic === filter);
+  if (props.isUser) {
+    posts = posts.filter((post) => post.user_id === user.id);
+  }
   const handleClick = (event) => {
     setFilter(event.target.value);
   };
 
   return (
-    <div className="border-top border-secondary w-75 m-auto mt-5 py-5">
+    <div className="w-75 m-auto py-5">
       <div className="d-flex justify-content-end">
         <button
           className={`btn ${filter === "All" && "icon"}`}

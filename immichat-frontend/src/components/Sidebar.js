@@ -21,7 +21,7 @@ const Sidebar = (props) => {
           <Message className="text-secondary" />
           <span className="px-3">Messages</span>
         </Link>
-        <Link to="/profile" className="py-3">
+        <Link to={`/profile/${user.id}`} className="py-3">
           <AccountCircle className="text-secondary" />
           <span className="px-3">Profile</span>
         </Link>
@@ -31,7 +31,7 @@ const Sidebar = (props) => {
         </Link>
       </nav>
       <h6 className="py-3 fw-bolder">Account</h6>
-      <Link to="/profile" className="py-3">
+      <Link to={`/profile/${user.id}/edit`} className="py-3">
         <AccountCircle className="text-secondary" />
         <span className="px-3">
           {user.first_name} {user.last_name}

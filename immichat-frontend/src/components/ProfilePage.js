@@ -9,6 +9,7 @@ import LanguageChange from "./translate";
 import AuthenticationContext from "../context/AuthenticationContext";
 import "./translate.css";
 import { AccountCircle } from "@mui/icons-material";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const { user, setUser } = React.useContext(AuthenticationContext);
@@ -19,7 +20,7 @@ const ProfilePage = () => {
     country_of_origin: user.country_of_origin,
     bio: user.bio,
   });
-
+  const navigate = useNavigate();
   const handleProfilePageChange = (e) => {
     e.preventDefault();
     setProfilePageForm({
@@ -42,6 +43,9 @@ const ProfilePage = () => {
       setUser(data[0]);
     }
     updateProfile(user.id);
+    setTimeout(() => {
+      navigate(`/profile/${user.id}`);
+    }, 1000);
     /* console.log(profilePageForm.file)
     // const formData = new FormData();
     // formData.append("file", profilePageForm.file);
@@ -50,7 +54,9 @@ const ProfilePage = () => {
     */
   };
 
-  return (
+  return !user.first_name ? (
+    <Navigate to="/auth" />
+  ) : (
     <div id="profile" className="d-flex justify-content-center">
       <div className="col-4 col-xl-2 bg-white py-5">
         <Sidebar />
@@ -71,7 +77,6 @@ const ProfilePage = () => {
                     {user.first_name} {user.last_name}
                   </span>
                   <span className="text-black-50">{user.email}</span>
-                  <span> </span>
                 </div>
               </div>
               <div className="col-md-5 border-right">
@@ -168,7 +173,7 @@ const ProfilePage = () => {
                       ></textarea>
                     </div>
                   </div>
-                  <LanguageChange/>
+                  <LanguageChange />
                   <div className="mt-5 text-center">
                     <button
                       className="btn btn-primary profile-button"

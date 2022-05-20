@@ -242,11 +242,11 @@ function FormComponent() {
       return;
     }
     setToken(data.token);
-    setUser(data.user);
+    setUser({ ...data.user, isAuth: true });
     window.localStorage.setItem("refreshToken", data.refreshToken);
     setTimeout(() => {
       navigate(`/`);
-    }, 3000);
+    }, 1000);
   };
 
   return user.isAuth ? (
