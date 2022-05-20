@@ -1,11 +1,10 @@
-import { Search } from "@mui/icons-material";
 import FriendList from './FriendList';
-
+import SearchBar from './SearchBar';
 const RightSideBar = (props) => {
   return (
     <div className="w-75 mt-5 m-auto">
       <div>
-        <form className="d-flex">
+        {/* <form className="d-flex">
           <div className="border border-dark w-75 rounded-pill">
             <Search />
             <input
@@ -14,7 +13,10 @@ const RightSideBar = (props) => {
             />
           </div>
           <button className="btn rounded-pill btn-primary mx-2">Search</button>
-        </form>
+        </form> */}
+        <div>
+        <SearchBar/>
+        </div>
         <div className="pt-5 d-flex flex-wrap justify-content-between border-bottom border-dark">
             <p className=" fs-4 fw-bolder">Friends List</p>
             <p className="icon fs-5 fw-bolder">See All</p>
