@@ -8,6 +8,7 @@ import EditProfile from "./ProfilePage";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import Messages from "./Messages";
+import Mission from "./LandingPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/profile/:id/edit" element={<EditProfile />}></Route>
       <Route path="/settings" element={<Settings />} />
       <Route path="/messages" element={<Messages />} />
+      <Route path="/mission" element={<Mission />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );
