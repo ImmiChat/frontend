@@ -5,7 +5,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = (props) => {
-  const { user } = React.useContext(AuthenticationContext);
+  const handleSignOut = (event) => {
+    window.localStorage.removeItem("refreshToken");
+    setUser({});
+  };
+  const { user, setUser } = React.useContext(AuthenticationContext);
   return (
     <div className="px-5">
       <h3 className="fw-bolder" style={{ color: "#ae83f4" }}>
@@ -39,6 +43,12 @@ const Sidebar = (props) => {
       </Link>
       <div className="mt-5">
         <LanguageChange />
+        <button
+          className="btn rounded border text-white purpBackground"
+          onClick={handleSignOut}
+        >
+          Sign Out
+        </button>
       </div>
     </div>
   );
