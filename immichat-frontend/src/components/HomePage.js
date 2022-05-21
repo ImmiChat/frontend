@@ -10,7 +10,7 @@ const HomePage = (props) => {
   const { user } = React.useContext(AuthenticationContext);
 
   return !user.first_name ? (
-    <Navigate to="/auth" />
+    <Navigate to="/" />
   ) : (
     <div className="d-flex justify-content-center ">
       <div className="col-4 col-xl-2 bg-white py-5">

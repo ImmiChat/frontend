@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import "./formStuff.css";
 import { setToken } from "../utils/http";
 import LanguageChange from "./translate";
@@ -128,7 +128,7 @@ const Title = styled.h1`
   margin-bottom: 2rem;
 `;
 
-const Link = styled.a`
+const Links = styled.a`
   text-decoration: none;
   color: #333;
   font-size: 1.4rem;
@@ -245,12 +245,12 @@ function FormComponent() {
     setUser({ ...data.user, isAuth: true });
     window.localStorage.setItem("refreshToken", data.refreshToken);
     setTimeout(() => {
-      navigate(`/`);
+      navigate(`/home`);
     }, 1000);
   };
 
   return user.isAuth ? (
-    <Navigate to="/" />
+    <Navigate to="/home" />
   ) : (
     <div style={{ fontSize: "62.5%" }}>
       <BackgroundBox clicked={click}>
@@ -274,9 +274,9 @@ function FormComponent() {
             value={signinForm.password}
             onChange={handleSignInForm}
           />
-          <Link href="#">
+          <Links href="#">
             <b>{signinMessage || "Forgot Your Password?"}</b>
-          </Link>
+          </Links>
           <LanguageChange />
           <Button>Sign In</Button>
         </Form>
@@ -325,9 +325,9 @@ function FormComponent() {
             value={signupForm.countryofOrigin}
             onChange={handleSignupFormChange}
           ></CountryDropdown> */}
-          <Link href="#" onClick={handleClick}>
+          <Links href="#" onClick={handleClick}>
             {signupMessage || "Already have an account?"}
-          </Link>
+          </Links>
           <Button>Sign Up</Button>
         </Form>
 

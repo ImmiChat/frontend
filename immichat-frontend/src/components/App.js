@@ -13,13 +13,13 @@ import Mission from "./LandingPage";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<Mission />} />
       <Route path="/auth" element={<FormComponent />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="/profile/:id" element={<Profile />} />
       <Route path="/profile/:id/edit" element={<EditProfile />}></Route>
       <Route path="/settings" element={<Settings />} />
       <Route path="/messages" element={<Messages />} />
-      <Route path="/mission" element={<Mission />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );
