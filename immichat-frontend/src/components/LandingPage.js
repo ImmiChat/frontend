@@ -27,7 +27,7 @@ export default function Mission() {
             <Link
               to="/"
               className="navbar-brand"
-              href="/mission"
+              href="/"
               style={{ paddingLeft: 150, fontSize: 40 }}
             >
               <div className="wrapper">
@@ -50,7 +50,7 @@ export default function Mission() {
                 className="navbar-nav wrapper"
                 style={{ marginLeft: "35%", fontSize: 20 }}
               >
-                <Link className="nav-item nav-link active" to="/" id="navicon">
+                <Link className="nav-item nav-link active" to="/home" id="navicon">
                   Home{" "}
                 </Link>
                 <Link className="nav-item nav-link" to="/auth" id="navicon">
