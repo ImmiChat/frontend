@@ -15,7 +15,7 @@ export default function SearchBar() {
           placeholder="Search..."
           value={inputValue}
           onFocus={() => setShowUsers(!showUsers)}
-          onBlur={() => setShowUsers(!showUsers)}
+          // onBlur={() => setShowUsers(!showUsers)}
           onChange={(event) => setInputValue(event.target.value)}
         />
         <div className="search" />
@@ -32,6 +32,7 @@ export default function SearchBar() {
           )
           .map((user) => (
             <Friend
+              id={user.id}
               firstName={user.first_name}
               lastName={user.last_name}
               isFriend={false}

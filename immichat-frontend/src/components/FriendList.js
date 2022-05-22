@@ -22,10 +22,11 @@ const FriendList = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-md-12">
           <div className="people-nearby">
             {friends.map((friend) => (
               <Friend
+                id={friend.friend_one_id}
                 firstName={friend.friend_first_name}
                 lastName={friend.friend_last_name}
                 isFriend={true}
