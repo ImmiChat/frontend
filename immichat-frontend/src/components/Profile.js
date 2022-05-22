@@ -7,9 +7,53 @@ import { Navigate, useParams, Link } from "react-router-dom";
 import { Person, PersonAdd } from "@mui/icons-material";
 
 const Profile = (props) => {
-  const { user, friends } = React.useContext(AuthenticationContext);
+  const { user, friends, setFriends } = React.useContext(AuthenticationContext);
   const [userInfo, setUserInfo] = React.useState({});
   const { id } = useParams();
+  const url = `http://localhost:9000/user/${user.id}/friends`;
+
+  const handleAcceptFriendRequest = () => {
+    async function acceptFriendRequest(friendId) {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ id: friendId }),
+      });
+      const data = await response.json();
+    }
+    acceptFriendRequest(id);
+  };
+
+  const handleCreateFriendRequest = () => {
+    async function createFriendRequest(friendId) {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ id: friendId }),
+      });
+      const data = await response.json();
+      setFriends([...friends, data[0]]);
+    }
+    createFriendRequest(id);
+  };
+  const handleDeleteFriend = () => {
+    async function deleteFriend(friendId) {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ id: friendId }),
+      });
+      const data = await response.json();
+    }
+    deleteFriend(id);
+  };
+
   React.useEffect(() => {
     if (parseInt(user.id) === parseInt(id)) {
       setUserInfo(user);
@@ -23,7 +67,9 @@ const Profile = (props) => {
     getUserInfo(id);
   }, [id]);
 
-  return (
+  return !user.first_name ? (
+    <Navigate to="/" />
+  ) : (
     <div className="d-flex justify-content-center">
       <div className="col-4 col-xl-2 bg-white py-5">
         <Sidebar />
@@ -84,7 +130,9 @@ const Profile = (props) => {
                         aria-labelledby="dropdownMenuLink"
                       >
                         <li>
-                          <button className="btn">Unfriend</button>
+                          <button className="btn" onClick={handleDeleteFriend}>
+                            Unfriend
+                          </button>
                         </li>
                       </ul>
                     </div>
@@ -109,10 +157,17 @@ const Profile = (props) => {
                         aria-labelledby="dropdownMenuLink"
                       >
                         <li>
-                          <button className="btn">Accept</button>
+                          <button
+                            className="btn"
+                            onClick={handleAcceptFriendRequest}
+                          >
+                            Accept
+                          </button>
                         </li>
                         <li>
-                          <button className="btn">Decline</button>
+                          <button className="btn" onClick={handleDeleteFriend}>
+                            Decline
+                          </button>
                         </li>
                       </ul>
                     </div>
@@ -136,13 +191,18 @@ const Profile = (props) => {
                         aria-labelledby="dropdownMenuLink"
                       >
                         <li>
-                          <button className="btn">Cancel Request</button>
+                          <button className="btn" onClick={handleDeleteFriend}>
+                            Cancel Request
+                          </button>
                         </li>
                       </ul>
                     </div>
                   ) : (
                     <div class="dropdown d-flex align-items-center">
-                      <button className="btn darkPurpleBackground text-white">
+                      <button
+                        className="btn darkPurpleBackground text-white"
+                        onClick={handleCreateFriendRequest}
+                      >
                         <PersonAdd />
                         Add Friend
                       </button>
