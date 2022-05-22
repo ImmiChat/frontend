@@ -3,13 +3,13 @@ import Sidebar from "./Sidebar";
 import RightSideBar from "./RightSideBar";
 import AuthenticationContext from "../context/AuthenticationContext";
 import Feed from "./Feed";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
+import { Person, PersonAdd } from "@mui/icons-material";
 
 const Profile = (props) => {
   const { user, friends } = React.useContext(AuthenticationContext);
   const [userInfo, setUserInfo] = React.useState({});
   const { id } = useParams();
-
   React.useEffect(() => {
     if (parseInt(user.id) === parseInt(id)) {
       setUserInfo(user);
@@ -30,28 +30,129 @@ const Profile = (props) => {
       </div>
       <div className="col-8 col-xl-6 border-start border-end border-secondary">
         <div className="container-fluid purpBackground">
-          <div className="py-5 w-75 m-auto text-white d-flex justify-content-center">
-            <div className="d-flex flex-wrap justify-content-center">
+          <div className="py-5 w-100 m-auto text-white d-flex justify-content-center row">
+            <div className="d-flex flex-wrap justify-content-center col-5  h-100">
               <img
-                className="rounded-circle mx-3 col-10"
-                width="200px"
-                height="200px"
+                className="rounded-circle mx-3"
+                style={{ width: "60%", height: "50%" }}
                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                 alt=""
               />
               <p className="col-10 text-center pt-3">
-                {userInfo.country_of_origin}
+                {userInfo.country_of_origin &&
+                  userInfo.country_of_origin[0].toUpperCase() +
+                    userInfo.country_of_origin.substring(1).toLowerCase()}
               </p>
             </div>
-            <div className="pt-2 px-3">
-              <h1 className="font-weight-bold fs-3">
-                {userInfo.first_name} {userInfo.last_name}
-              </h1>
-              <span className="pt-2">{userInfo.email}</span>
-              <p className="pt-2">{userInfo.bio}</p>
-            </div>
-            <div className="d-flex align-items-end justify-content-end ms-5">
-              <button className="btn h-25 btn-danger p-4 ">Unfriend</button>
+            <div className="col-5 d-flex flex-column justify-content-between">
+              <div className="row ">
+                <h1 className="fs-2">
+                  {userInfo.first_name} {userInfo.last_name}
+                </h1>
+                <h3>
+                  {userInfo.language &&
+                    userInfo.language[0].toUpperCase() +
+                      userInfo.language.substring(1).toLowerCase()}
+                </h3>
+                <p>{userInfo.bio}</p>
+              </div>
+              <div className="row">
+                <div className="d-flex justify-content-end">
+                  {parseInt(user.id) === parseInt(id) ? (
+                    <Link to={`/profile/${user.id}/edit`}>
+                      <button className="btn btn-secondary">
+                        Edit Profile
+                      </button>
+                    </Link>
+                  ) : friends.find(
+                      (friend) =>
+                        parseInt(friend.id) === parseInt(id) && friend.accepted
+                    ) ? (
+                    <div class="dropdown d-flex align-items-center">
+                      <button
+                        className="btn darkPurpleBackground text-white"
+                        id="dropdownMenuLink"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <Person />
+                        Friends
+                      </button>
+
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <li>
+                          <button className="btn">Unfriend</button>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : friends.find(
+                      (friend) =>
+                        parseInt(friend.id) === parseInt(id) &&
+                        !friend.requested
+                    ) ? (
+                    <div class="dropdown d-flex align-items-center">
+                      <button
+                        className="btn darkPurpleBackground text-white"
+                        id="dropdownMenuLink"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <PersonAdd />
+                        Respond
+                      </button>
+
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <li>
+                          <button className="btn">Accept</button>
+                        </li>
+                        <li>
+                          <button className="btn">Decline</button>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : friends.find(
+                      (friend) =>
+                        parseInt(friend.id) === parseInt(id) && friend.requested
+                    ) ? (
+                    <div class="dropdown d-flex align-items-center">
+                      <button
+                        className="btn darkPurpleBackground text-white"
+                        id="dropdownMenuLink"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <PersonAdd />
+                        Pending
+                      </button>
+
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <li>
+                          <button className="btn">Cancel Request</button>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div class="dropdown d-flex align-items-center">
+                      <button className="btn darkPurpleBackground text-white">
+                        <PersonAdd />
+                        Add Friend
+                      </button>
+                    </div>
+                  )}
+                  {parseInt(user.id) !== parseInt(id) && (
+                    <button className="mx-2 btn btn-secondary">Message</button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
