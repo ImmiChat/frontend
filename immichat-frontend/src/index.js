@@ -5,15 +5,18 @@ import App from "./components/App";
 import AuthenticationContextProvider from "./context/AuthenticationContextProvider";
 import { BrowserRouter } from "react-router-dom";
 import FeedContextProvider from "./context/FeedContextProvider";
+import UsersContextProvider from "./context/UsersContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthenticationContextProvider>
       <FeedContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <UsersContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </UsersContextProvider>
       </FeedContextProvider>
     </AuthenticationContextProvider>
   </React.StrictMode>

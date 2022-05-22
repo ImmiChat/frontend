@@ -4,7 +4,7 @@ const Friend = (props) => {
   function handeReload(e) {
     e.preventDefault();
   }
-  const { friend_first_name, friend_last_name } = props.friend;
+  const { firstName, lastName, isFriend } = props;
   return (
     <div className="nearby-user">
       <div className="row">
@@ -14,15 +14,21 @@ const Friend = (props) => {
         <div className="col-md-7 col-sm-7">
           <h5 className="names">
             {/* <a href="#" className="profile-link"> */}
-            {friend_first_name} {friend_last_name}
+            {firstName} {lastName}
             {/* </a> */}
           </h5>
         </div>
         <div className="friendBtn col-md-3 col-sm-3" onClick={handeReload}>
           <a href="/">
-            <button className="bn54">
-              <span className="bn54span">Unfriend</span>
-            </button>
+            {isFriend ? (
+              <button className="bn54">
+                <span className="bn54span">Unfriend</span>
+              </button>
+            ) : (
+              <button className="bn54">
+                <span className="bn54span">Add friend</span>
+              </button>
+            )}
           </a>
         </div>
       </div>

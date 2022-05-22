@@ -25,7 +25,11 @@ const FriendList = () => {
         <div className="col-md-8">
           <div className="people-nearby">
             {friends.map((friend) => (
-              <Friend friend={friend} />
+              <Friend
+                firstName={friend.friend_first_name}
+                lastName={friend.friend_last_name}
+                isFriend={true}
+              />
             ))}
           </div>
         </div>
