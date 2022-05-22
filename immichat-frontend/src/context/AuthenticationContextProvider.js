@@ -31,6 +31,16 @@ const AuthenticationContextProvider = ({ children }) => {
   const context = {
     user,
     setUser,
+    file: '',
+    imagePreviewUrl:
+            'https://github.com/OlgaKoplik/CodePen/blob/master/profile.jpg?raw=true',
+    fname: '',
+    bio: '',
+    lname: '',
+    email: '',
+    language: '',
+    country: '',
+    active: 'edit',
   };
   return (
     <AuthenticationContext.Provider value={context}>
