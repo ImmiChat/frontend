@@ -5,20 +5,8 @@ import AuthenticationContext from "../context/AuthenticationContext";
 import Friend from "./Friend";
 
 const FriendList = () => {
-  const [friends, setFriends] = React.useState([]);
-  const { user } = React.useContext(AuthenticationContext);
+  const { user, friends } = React.useContext(AuthenticationContext);
 
-  React.useEffect(() => {
-    if (!user.id) return;
-    async function fetchFriends(userId) {
-      const response = await fetch(
-        `http://localhost:9000/user/${userId}/friends`
-      );
-      const data = await response.json();
-      setFriends(data.filter((friend) => friend.accepted));
-    }
-    fetchFriends(user.id);
-  }, [user]);
   return (
     <div className="container">
       <div className="row">
@@ -26,9 +14,9 @@ const FriendList = () => {
           <div className="people-nearby">
             {friends.map((friend) => (
               <Friend
-                id={friend.friend_one_id}
-                firstName={friend.friend_first_name}
-                lastName={friend.friend_last_name}
+                id={friend.id}
+                firstName={friend.first_name}
+                lastName={friend.last_name}
                 isFriend={true}
               />
             ))}

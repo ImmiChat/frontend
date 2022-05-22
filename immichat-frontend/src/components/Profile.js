@@ -6,9 +6,10 @@ import Feed from "./Feed";
 import { Navigate, useParams } from "react-router-dom";
 
 const Profile = (props) => {
-  const { user } = React.useContext(AuthenticationContext);
+  const { user, friends } = React.useContext(AuthenticationContext);
   const [userInfo, setUserInfo] = React.useState({});
   const { id } = useParams();
+
   React.useEffect(() => {
     if (parseInt(user.id) === parseInt(id)) {
       setUserInfo(user);
@@ -20,7 +21,7 @@ const Profile = (props) => {
       setUserInfo(data[0]);
     }
     getUserInfo(id);
-  });
+  }, [id]);
 
   return (
     <div className="d-flex justify-content-center">
@@ -48,6 +49,9 @@ const Profile = (props) => {
               </h1>
               <span className="pt-2">{userInfo.email}</span>
               <p className="pt-2">{userInfo.bio}</p>
+            </div>
+            <div className="d-flex align-items-end justify-content-end ms-5">
+              <button className="btn h-25 btn-danger p-4 ">Unfriend</button>
             </div>
           </div>
         </div>
