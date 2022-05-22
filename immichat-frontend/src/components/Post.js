@@ -9,6 +9,7 @@ import FeedContext from "../context/FeedContext";
 import React from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
 import Comment from "./Comment";
+import { Link } from "react-router-dom";
 const { DateTime } = require("luxon");
 
 const Post = ({ info }) => {
@@ -110,10 +111,12 @@ const Post = ({ info }) => {
     <div className="border rounded border-secondary px-3 my-5" id={info.id}>
       <div className="d-flex justify-content-between align-items-center ">
         <div className="d-flex align-items-center">
-          <AccountCircle style={{ width: "50px", height: "75px" }} />
-          <span className="fw-bold px-2">
-            {info.first_name} {info.last_name}
-          </span>
+          <Link to={`/profile/${info.user_id}`}>
+            <AccountCircle style={{ width: "50px", height: "75px" }} />
+            <span className="fw-bold px-2">
+              {info.first_name} {info.last_name}
+            </span>
+          </Link>
           <span className="px-2 icon">#{info.topic}</span>
         </div>
 
