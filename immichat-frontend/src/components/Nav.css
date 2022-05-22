@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Luckiest+Guy&family=Montserrat:wght@700&family=Nosifer&family=Oswald:wght@400;600&family=Roboto:wght@100;300&family=Rubik+Glitch&display=swap');
+
+.body1
+{
+  box-sizing: border-box;
+}
+
+.Box{
+    margin-bottom: 30px;
+}
+
+.main1
+{
+  justify-content: center;
+  height: 25rem;
+  background-color: blueviolet;
+  background-image: linear-gradient(170deg, blueviolet 0%, blueviolet 60%, white 60.1%);
+}
+
+#navicon1
+{
+  margin-left: 100px;
+  font-size: 20px;
+}
+
+.wrapper1
+{
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo1
+{
+  width: 10ch;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: 'Bradley Hand', cursive;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+@keyframes typing
+{
+  from
+  {
+    width: 0;
+  }
+}
+
+@keyframes blink
+{
+  50%
+  {
+    border-color: transparent;
+  }
+}
+
+@keyframes like
+{
+  0%
+  {
+    background-position-x: 0;
+  }
+
+  100%
+  {
+    background-position-x: calc(var(--size) * (var(--frames) * -1 + 3));
+  }
+}

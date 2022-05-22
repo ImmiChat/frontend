@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import AuthenticationContext from "../context/AuthenticationContext";
-import { useNavigate, Navigate, Link } from "react-router-dom";
-import "./formStuff.css";
-import { setToken } from "../utils/http";
-import LanguageChange from "./translate";
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import AuthenticationContext from '../context/AuthenticationContext';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
+import './Nav.css';
+
+import { setToken } from '../utils/http';
+import LanguageChange from './translate';
 
 const move = keyframes`
 0%{
@@ -21,30 +22,28 @@ const BackgroundBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px auto;
+  margin-left: 150px;
   position: relative;
   border-radius: 23px;
   border: 1px solid #053271;
   .text1 {
-    z-index: ${(props) => (props.clicked ? "-700" : "700")};
-    transform: ${(props) =>
-      props.clicked ? "translateX(0)" : "translateX(100%)"};
+    z-index: ${(props) => (props.clicked ? '-700' : '700')};
+    transform: ${(props) => (props.clicked ? 'translateX(0)' : 'translateX(100%)')};
     transition: transform 1s ease-in-out;
-    animation: ${(props) => (props.clicked ? move : "none")} 1.5s;
+    animation: ${(props) => (props.clicked ? move : 'none')} 1.5s;
   }
   .text2 {
-    z-index: ${(props) => (props.clicked ? "700" : "-700")};
-    animation: ${(props) => (props.clicked ? "none" : move)} 1.5s;
-    transform: ${(props) =>
-      props.clicked ? "translateX(-100%)" : "translateX(0%)"};
+    z-index: ${(props) => (props.clicked ? '700' : '-700')};
+    animation: ${(props) => (props.clicked ? 'none' : move)} 1.5s;
+    transform: ${(props) => (props.clicked ? 'translateX(-100%)' : 'translateX(0%)')};
     transition: transform 1s ease-in-out;
   }
   .signin {
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "-600" : "500")};
-    transform: ${(props) => (props.clicked ? "none" : "translateX(-50%)")};
+    z-index: ${(props) => (props.clicked ? '-600' : '500')};
+    transform: ${(props) => (props.clicked ? 'none' : 'translateX(-50%)')};
     transition: all 1s;
   }
   .signup {
@@ -52,8 +51,8 @@ const BackgroundBox = styled.div`
     width: 35%;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "500" : "-500")};
-    transform: ${(props) => (props.clicked ? "translateX(50%)" : "none")};
+    z-index: ${(props) => (props.clicked ? '500' : '-500')};
+    transform: ${(props) => (props.clicked ? 'translateX(50%)' : 'none')};
     transition: all 1s;
   }
 `;
@@ -66,11 +65,9 @@ const Box1 = styled.div`
   right: 0;
   top: 0;
   z-index: 600;
-  transform: ${(props) =>
-    props.clicked ? "translateX(-122%)" : "translateX(0%)"};
+  transform: ${(props) => (props.clicked ? 'translateX(-122%)' : 'translateX(0%)')};
   transition: transform 1s;
-  border-radius: ${(props) =>
-    props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
+  border-radius: ${(props) => (props.clicked ? '23px 0 0 23px' : '0 23px 23px 0')};
 `;
 
 const Form = styled.form`
@@ -143,8 +140,8 @@ const ButtonAnimate = styled.button`
   top: 70%;
   border: none;
   cursor: pointer;
-  right: ${(props) => (props.clicked ? "52%" : "42%")};
-  transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
+  right: ${(props) => (props.clicked ? '52%' : '42%')};
+  transform: ${(props) => (props.clicked ? 'rotate(360deg)' : 'rotate(0)')};
   transition: all 1.5s;
   background-color: transparent;
   &::before {
@@ -172,7 +169,7 @@ const Text = styled.div`
   }
   .attention-icon {
     position: absolute;
-    right: ${(props) => (props.clicked ? "0" : "none")};
+    right: ${(props) => (props.clicked ? '0' : 'none')};
     top: 100%;
     font-size: 5rem;
   }
@@ -183,8 +180,8 @@ function FormComponent() {
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [signinForm, setSigninForm] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [signinMessage, setSigninMessage] = React.useState(null);
   const [signupMessage, setSignupMessage] = React.useState(null);
@@ -198,10 +195,10 @@ function FormComponent() {
     });
   };
   const [signupForm, setSignUpForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
   });
 
   const handleSignupFormChange = (event) => {
@@ -215,10 +212,10 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/register", {
-      method: "POST",
+    const response = await fetch('http://localhost:9000/register', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(signupForm),
@@ -229,10 +226,10 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/login", {
-      method: "POST",
+    const response = await fetch('http://localhost:9000/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(signinForm),
     });
@@ -243,81 +240,132 @@ function FormComponent() {
     }
     setToken(data.token);
     setUser({ ...data.user, isAuth: true });
-    window.localStorage.setItem("refreshToken", data.refreshToken);
+    window.localStorage.setItem('refreshToken', data.refreshToken);
     setTimeout(() => {
-      navigate(`/home`);
+      navigate('/home');
     }, 1000);
   };
 
   return user.isAuth ? (
     <Navigate to="/home" />
   ) : (
-    <div style={{ fontSize: "62.5%" }}>
-      <BackgroundBox clicked={click}>
-        <ButtonAnimate clicked={click} onClick={handleClick} />
+    <>
+      <body className="body1">
+        <link rel="stylesheet" href="landingpage1.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossOrigin="anonymous"
+        />
+        <title>Immichat</title>
+        <div className="main1">
+          <nav
+            className="navbar  navbar-expand-lg navbar-dark bg-transparent"
+            style={{ fontFamily: '"Luckiest Guy", cursive' }}
+          >
+            <Link
+              to="/"
+              className="navbar-brand"
+              href="/"
+              style={{ paddingLeft: 150, fontSize: 40 }}
+            >
+              <div className="wrapper1">
+                <div className="typing-demo1">Immichat</div>
+              </div>
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav wrapper1" style={{ marginLeft: '35%', fontSize: 20 }}>
+                <Link className="nav-item nav-link active" to="/home" id="navicon1">
+                  Home
+                  {' '}
+                </Link>
+                <Link className="nav-item nav-link" to="/auth" id="navicon1">
+                  Sign Up / Sign In
+                </Link>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </body>
 
-        <Form className="signin" onSubmit={handleLogin}>
-          <Title>Sign In</Title>
-          <Input
-            type="email"
-            name="email"
-            id="emailId1"
-            placeholder="Email"
-            value={signinForm.email}
-            onChange={handleSignInForm}
-          />
-          <Input
-            type="password"
-            name="password"
-            id="passwordId1"
-            placeholder="Password"
-            value={signinForm.password}
-            onChange={handleSignInForm}
-          />
-          <Links href="#">
-            <b>{signinMessage || "Forgot Your Password?"}</b>
-          </Links>
-          <LanguageChange />
-          <Button>Sign In</Button>
-        </Form>
+      <div className="Box" style={{ fontSize: '62.5%' }}>
+        <BackgroundBox clicked={click}>
+          <ButtonAnimate clicked={click} onClick={handleClick} />
 
-        <Form className="signup" onSubmit={handleRegistration}>
-          <Title>Sign Up</Title>
-          <Input
-            type="text"
-            name="firstName"
-            id="fname"
-            placeholder="First Name"
-            value={signupForm.firstName}
-            onChange={handleSignupFormChange}
-          />
-          <Input
-            type="text"
-            name="lastName"
-            id="lname"
-            placeholder="Last Name"
-            value={signupForm.lastName}
-            onChange={handleSignupFormChange}
-          />
+          <Form className="signin" onSubmit={handleLogin}>
+            <Title>Sign In</Title>
+            <Input
+              type="email"
+              name="email"
+              id="emailId1"
+              placeholder="Email"
+              value={signinForm.email}
+              onChange={handleSignInForm}
+            />
+            <Input
+              type="password"
+              name="password"
+              id="passwordId1"
+              placeholder="Password"
+              value={signinForm.password}
+              onChange={handleSignInForm}
+            />
+            <Links href="#">
+              <b>{signinMessage || 'Forgot Your Password?'}</b>
+            </Links>
+            <LanguageChange />
+            <Button>Sign In</Button>
+          </Form>
 
-          <Input
-            type="email"
-            name="email"
-            id="emailId2"
-            placeholder="Email"
-            value={signupForm.email}
-            onChange={handleSignupFormChange}
-          />
-          <Input
-            type="password"
-            name="password"
-            id="passwordId2"
-            placeholder="Password"
-            value={signupForm.password}
-            onChange={handleSignupFormChange}
-          />
-          <br />
-          {/* <h2>Choose your country or territory:</h2>
+          <Form className="signup" onSubmit={handleRegistration}>
+            <Title>Sign Up</Title>
+            <Input
+              type="text"
+              name="firstName"
+              id="fname"
+              placeholder="First Name"
+              value={signupForm.firstName}
+              onChange={handleSignupFormChange}
+            />
+            <Input
+              type="text"
+              name="lastName"
+              id="lname"
+              placeholder="Last Name"
+              value={signupForm.lastName}
+              onChange={handleSignupFormChange}
+            />
+
+            <Input
+              type="email"
+              name="email"
+              id="emailId2"
+              placeholder="Email"
+              value={signupForm.email}
+              onChange={handleSignupFormChange}
+            />
+            <Input
+              type="password"
+              name="password"
+              id="passwordId2"
+              placeholder="Password"
+              value={signupForm.password}
+              onChange={handleSignupFormChange}
+            />
+            <br />
+            {/* <h2>Choose your country or territory:</h2>
           <CountryDropdown
             id="countries"
             className="countryForm"
@@ -325,31 +373,32 @@ function FormComponent() {
             value={signupForm.countryofOrigin}
             onChange={handleSignupFormChange}
           ></CountryDropdown> */}
-          <Links href="#" onClick={handleClick}>
-            {signupMessage || "Already have an account?"}
-          </Links>
-          <Button>Sign Up</Button>
-        </Form>
+            <Links href="#" onClick={handleClick}>
+              {signupMessage || 'Already have an account?'}
+            </Links>
+            <Button>Sign Up</Button>
+          </Form>
 
-        <Text className="text1" clicked={click}>
-          <h1>Welcome!</h1>
-          Don't have an account?
-          <br />
-          <span className="attention">Click on Emoji</span>
-          <span className="attention-icon">⤶</span>
-        </Text>
+          <Text className="text1" clicked={click}>
+            <h1>Welcome!</h1>
+            Don't have an account?
+            <br />
+            <span className="attention">Click on Emoji</span>
+            <span className="attention-icon">⤶</span>
+          </Text>
 
-        <Text className="text2" clicked={click}>
-          <h1>Hello!</h1>
-          Already have an account?
-          <br />
-          <span className="attention">Click on Emoji</span>
-          <span className="attention-icon">⤷</span>
-        </Text>
+          <Text className="text2" clicked={click}>
+            <h1>Hello!</h1>
+            Already have an account?
+            <br />
+            <span className="attention">Click on Emoji</span>
+            <span className="attention-icon">⤷</span>
+          </Text>
 
-        <Box1 clicked={click} />
-      </BackgroundBox>
-    </div>
+          <Box1 clicked={click} />
+        </BackgroundBox>
+      </div>
+    </>
   );
 }
 

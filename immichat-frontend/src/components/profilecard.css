@@ -11,11 +11,12 @@
 
 .profilecard  .card
 {
-  width: 25vw;
-  height: 130vh;
+  width: 32.5vw;
+  height: 90vh;
   padding: 15px;
+  margin-top: 50px;
   margin-bottom: 40px;
-  margin-left: 200px;
+  margin-left: 150px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -39,7 +40,8 @@
 .profilecard  .field
 {
   margin: 5px;
-  display: flex;
+  display: inline-block;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -62,8 +64,8 @@
 .profilecard  .img-wrap
 {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -158,14 +160,14 @@
   background: #8A2BE2;
 }
 
-.profilecard  .save
-{
-  font-weight: 600;
-  left: -20px;
-  text-transform: uppercase;
+.profilecard .save{
+  background-color: #8A2BE2;
+  padding: 7px;
+  width: 100px;
   letter-spacing: 1px;
-  width: 20px;
-  box-shadow: 20px 0px 40px 0px  #8A2BE2;
+  font-family: "Rockwell";
+  animation: savebounce 4s infinite;
+  cursor: pointer;
 }
 
 .profilecard  .edit
@@ -219,5 +221,40 @@
   100%
   {
     background-position: 120% -5%, 200% -40%;
+  }
+}
+
+@keyframes savebounce {
+  5%,
+  50% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1) rotate(-5deg);
+  }
+
+  25% {
+    transform: scale(1) rotate(5deg);
+  }
+
+  30% {
+    transform: scale(1) rotate(-3deg);
+  }
+
+  35% {
+    transform: scale(1) rotate(2deg);
+  }
+
+  40% {
+    transform: scale(1) rotate(0);
   }
 }
