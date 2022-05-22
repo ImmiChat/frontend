@@ -36,7 +36,7 @@ const AuthenticationContextProvider = ({ children }) => {
         `http://localhost:9000/user/${userId}/friends`
       );
       const data = await response.json();
-      setFriends(data.filter((friend) => friend.accepted));
+      setFriends(data);
     }
     fetchFriends(user.id);
   }, [user]);

@@ -12,14 +12,16 @@ const FriendList = () => {
       <div className="row">
         <div className="col-md-12">
           <div className="people-nearby">
-            {friends.map((friend) => (
-              <Friend
-                id={friend.id}
-                firstName={friend.first_name}
-                lastName={friend.last_name}
-                isFriend={true}
-              />
-            ))}
+            {friends
+              .filter((friend) => friend.accepted)
+              .map((friend) => (
+                <Friend
+                  id={friend.id}
+                  firstName={friend.first_name}
+                  lastName={friend.last_name}
+                  isFriend={true}
+                />
+              ))}
           </div>
         </div>
       </div>
