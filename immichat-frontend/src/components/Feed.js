@@ -9,8 +9,8 @@ const Feed = (props) => {
   const [filter, setFilter] = React.useState("All");
   let posts =
     filter === "All" ? feed : feed.filter((post) => post.topic === filter);
-  if (props.isUser) {
-    posts = posts.filter((post) => post.user_id === user.id);
+  if ("userId" in props) {
+    posts = posts.filter((post) => post.user_id === props.userId);
   }
   const handleClick = (event) => {
     setFilter(event.target.value);
