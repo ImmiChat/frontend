@@ -9,6 +9,7 @@ const FriendList = () => {
   const { user } = React.useContext(AuthenticationContext);
 
   React.useEffect(() => {
+    if (!user.id) return;
     async function fetchFriends(userId) {
       const response = await fetch(
         `http://localhost:9000/user/${userId}/friends`
@@ -17,7 +18,7 @@ const FriendList = () => {
       setFriends(data.filter((friend) => friend.accepted));
     }
     fetchFriends(user.id);
-  }, []);
+  }, [user]);
   return (
     <div className="container">
       <div className="row">

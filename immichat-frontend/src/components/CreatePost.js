@@ -20,6 +20,13 @@ const CreatePost = (props) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (topic === "Select a topic") {
+      return;
+    }
+    if (topic === "") {
+      setTopic("Select a topic");
+      return;
+    }
     async function createNewPost() {
       console.log(body, user.id);
       const response = await fetch("http://localhost:9000/posts", {
@@ -73,7 +80,11 @@ const CreatePost = (props) => {
                 >
                   Topic
                 </button>
-                {topic && <span className="px-3 icon">#{topic}</span>}
+                {topic === "" || topic === "Select a topic" ? (
+                  <span className="px-3 text-danger">{topic}</span>
+                ) : (
+                  <span className="px-3 icon">#{topic}</span>
+                )}
                 <ul class="dropdown-menu">
                   <li
                     className="dropdown-item"

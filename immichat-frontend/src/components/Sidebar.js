@@ -49,6 +49,14 @@ const Sidebar = (props) => {
         >
           Sign Out
         </button>
+        <div className="py-5">
+          <img
+            src="https://www1.nyc.gov/assets/immigrants/images/content/pages/Immigrant_New_York_White_600.gif"
+            alt="Immigrant New York"
+            width="100%"
+            height="100%"
+          />
+        </div>
       </div>
     </div>
   );

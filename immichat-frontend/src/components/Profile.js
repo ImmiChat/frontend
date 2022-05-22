@@ -3,11 +3,26 @@ import Sidebar from "./Sidebar";
 import RightSideBar from "./RightSideBar";
 import AuthenticationContext from "../context/AuthenticationContext";
 import Feed from "./Feed";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 const Profile = (props) => {
   const { user } = React.useContext(AuthenticationContext);
-  return !user.first_name ? (
+  const [userInfo, setUserInfo] = React.useState({});
+  const { id } = useParams();
+  React.useEffect(() => {
+    if (parseInt(user.id) === parseInt(id)) {
+      setUserInfo(user);
+      return;
+    }
+    async function getUserInfo(userId) {
+      const response = await fetch(`http://localhost:9000/user/${userId}`);
+      const data = await response.json();
+      console.log(data);
+    }
+    getUserInfo(id);
+  });
+
+  return !user.isAuth ? (
     <Navigate to="/auth" />
   ) : (
     <div className="d-flex justify-content-center">
