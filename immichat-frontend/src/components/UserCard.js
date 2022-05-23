@@ -6,7 +6,6 @@ const UserCard = (props) => {
   const { id, first_name, last_name } = props.info;
   const { friends, setFriends, user } = React.useContext(AuthenticationContext);
   const url = `http://localhost:9000/user/${user.id}/friends`;
-
   const handleAcceptFriendRequest = (id) => {
     async function acceptFriendRequest(friendId) {
       const response = await fetch(url, {
@@ -22,6 +21,11 @@ const UserCard = (props) => {
       );
       const copy = [...friends];
       copy[index].accepted = true;
+      props.setFriendRequests(
+        props.friendRequests.filter(
+          (request) => parseInt(request.id) !== parseInt(id)
+        )
+      );
       setFriends([...copy]);
     }
     acceptFriendRequest(id);
@@ -37,12 +41,14 @@ const UserCard = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
-      const userId =
-        parseInt(user.id) === parseInt(data[0].friend_one)
-          ? data[0].friend_two
-          : data[0].friend_one;
+      const userId = data[0].friend_two;
       setFriends(
         friends.filter((friend) => parseInt(friend.id) !== parseInt(userId))
+      );
+      props.setSentRequests(
+        props.sentRequests.filter(
+          (friend) => parseInt(friend.id) !== parseInt(userId)
+        )
       );
     }
     deleteFriend(id);
@@ -65,20 +71,32 @@ const UserCard = (props) => {
           </div>
         </div>
       </Link>
-      <div className="">
-        <button
-          className="btn col-5 purpBackground mx-2 text-white mb-4"
-          onClick={() => handleAcceptFriendRequest(id)}
-        >
-          Accept
-        </button>
-        <button
-          className="btn col-6 btn-secondary mb-4"
-          onClick={() => handleDeleteFriend}
-        >
-          Decline
-        </button>
-      </div>
+      {!props.sent && (
+        <div className="">
+          <button
+            className="btn col-5 purpBackground mx-2 text-white mb-4"
+            onClick={() => handleAcceptFriendRequest(id)}
+          >
+            Accept
+          </button>
+          <button
+            className="btn col-6 btn-secondary mb-4"
+            onClick={() => handleDeleteFriend(id)}
+          >
+            Decline
+          </button>
+        </div>
+      )}
+      {props.sent && (
+        <div className="d-flex justify-content-center">
+          <button
+            className="btn col-6 btn-secondary mb-4"
+            onClick={() => handleDeleteFriend(id)}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
     </div>
   );
 };
