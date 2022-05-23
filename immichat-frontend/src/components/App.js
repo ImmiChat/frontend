@@ -10,6 +10,7 @@ import Mission from "./LandingPage";
 import ProfilePage from "./ProfilePage";
 import HomePage from "./HomePage";
 import CardProfile from "./CardProfile";
+import Notifications from "./Notifications";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/profile/:id/edit" element={<ProfilePage />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/messages" element={<Messages />} />
+      <Route path="/notifications" element={<Notifications />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

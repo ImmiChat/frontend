@@ -1,4 +1,10 @@
-import { Home, Message, AccountCircle, Settings } from "@mui/icons-material";
+import {
+  Home,
+  Message,
+  AccountCircle,
+  Settings,
+  Notifications,
+} from "@mui/icons-material";
 import LanguageChange from "./translate";
 import AuthenticationContext from "../context/AuthenticationContext";
 import React from "react";
@@ -28,6 +34,10 @@ const Sidebar = (props) => {
         <Link to={`/profile/${user.id}`} className="py-3">
           <AccountCircle className="text-secondary" />
           <span className="px-3">Profile</span>
+        </Link>
+        <Link to="/notifications" className="py-3">
+          <Notifications className="text-secondary" />
+          <span className="px-3">Notifications</span>
         </Link>
         <Link to="/settings" className="py-3">
           <Settings className="text-secondary" />
