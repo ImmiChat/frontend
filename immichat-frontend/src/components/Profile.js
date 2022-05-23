@@ -74,6 +74,10 @@ const Profile = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
+      data[0].requested = true;
+      data[0].first_name = userInfo.first_name;
+      data[0].last_name = userInfo.last_name;
+      data[0].id = data[0].friend_two;
       setFriends([...friends, data[0]]);
     }
     createFriendRequest(id);
