@@ -10,6 +10,37 @@ const Profile = (props) => {
   const { user, friends, setFriends } = React.useContext(AuthenticationContext);
   const [userInfo, setUserInfo] = React.useState({});
   const { id } = useParams();
+  const [requestState, setRequestState] = React.useState("user");
+  // user
+  // respond
+  // pending
+  // friend
+  React.useEffect(() => {
+    if (parseInt(user.id) === parseInt(id)) {
+      setRequestState("user");
+    } else if (
+      friends.find(
+        (friend) => parseInt(friend.id) === parseInt(id) && friend.accepted
+      )
+    ) {
+      setRequestState("friend");
+    } else if (
+      friends.find(
+        (friend) => parseInt(friend.id) === parseInt(id) && !friend.requested
+      )
+    ) {
+      setRequestState("respond");
+    } else if (
+      friends.find(
+        (friend) => parseInt(friend.id) === parseInt(id) && friend.requested
+      )
+    ) {
+      setRequestState("pending");
+    } else {
+      setRequestState("notFriend");
+    }
+  }, [id]);
+
   const url = `http://localhost:9000/user/${user.id}/friends`;
 
   const handleAcceptFriendRequest = () => {
@@ -22,8 +53,10 @@ const Profile = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
+      setFriends([...friends, data[0]]);
     }
     acceptFriendRequest(id);
+    setRequestState("friend");
   };
 
   const handleCreateFriendRequest = () => {
@@ -39,6 +72,7 @@ const Profile = (props) => {
       setFriends([...friends, data[0]]);
     }
     createFriendRequest(id);
+    setRequestState("pending");
   };
   const handleDeleteFriend = () => {
     async function deleteFriend(friendId) {
@@ -50,8 +84,14 @@ const Profile = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
+      setFriends(
+        friends.filter(
+          (friend) => parseInt(friend.id) !== parseInt(data[0].friend_two)
+        )
+      );
     }
     deleteFriend(id);
+    setRequestState("notFriend");
   };
 
   React.useEffect(() => {
@@ -104,16 +144,13 @@ const Profile = (props) => {
               </div>
               <div className="row">
                 <div className="d-flex justify-content-end">
-                  {parseInt(user.id) === parseInt(id) ? (
+                  {requestState === "user" ? (
                     <Link to={`/profile/${user.id}/edit`}>
                       <button className="btn btn-secondary">
                         Edit Profile
                       </button>
                     </Link>
-                  ) : friends.find(
-                      (friend) =>
-                        parseInt(friend.id) === parseInt(id) && friend.accepted
-                    ) ? (
+                  ) : requestState === "friend" ? (
                     <div class="dropdown d-flex align-items-center">
                       <button
                         className="btn darkPurpleBackground text-white"
@@ -136,11 +173,7 @@ const Profile = (props) => {
                         </li>
                       </ul>
                     </div>
-                  ) : friends.find(
-                      (friend) =>
-                        parseInt(friend.id) === parseInt(id) &&
-                        !friend.requested
-                    ) ? (
+                  ) : requestState === "respond" ? (
                     <div class="dropdown d-flex align-items-center">
                       <button
                         className="btn darkPurpleBackground text-white"
@@ -171,10 +204,7 @@ const Profile = (props) => {
                         </li>
                       </ul>
                     </div>
-                  ) : friends.find(
-                      (friend) =>
-                        parseInt(friend.id) === parseInt(id) && friend.requested
-                    ) ? (
+                  ) : requestState === "pending" ? (
                     <div class="dropdown d-flex align-items-center">
                       <button
                         className="btn darkPurpleBackground text-white"
