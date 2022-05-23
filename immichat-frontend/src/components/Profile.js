@@ -53,7 +53,12 @@ const Profile = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
-      setFriends([...friends, data[0]]);
+      const index = friends.findIndex(
+        (friend) => parseInt(friend.id) === parseInt(data[0].friend_one)
+      );
+      const copy = [...friends];
+      copy[index].accepted = true;
+      setFriends([...copy]);
     }
     acceptFriendRequest(id);
     setRequestState("friend");
@@ -84,10 +89,12 @@ const Profile = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
+      const userId =
+        parseInt(user.id) === parseInt(data[0].friend_one)
+          ? data[0].friend_two
+          : data[0].friend_one;
       setFriends(
-        friends.filter(
-          (friend) => parseInt(friend.id) !== parseInt(data[0].friend_two)
-        )
+        friends.filter((friend) => parseInt(friend.id) !== parseInt(userId))
       );
     }
     deleteFriend(id);
