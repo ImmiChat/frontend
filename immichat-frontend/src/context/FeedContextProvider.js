@@ -15,7 +15,10 @@ const FeedContextProvider = ({ children }) => {
       const commentResponse = await fetch("http://localhost:9000/comments");
       const commentData = await commentResponse.json();
       for (let commentMetric of commentData) {
-        map[commentMetric.post_id] = [parseInt(commentMetric.numberofcomments), 0];
+        map[commentMetric.post_id] = [
+          parseInt(commentMetric.numberofcomments),
+          0,
+        ];
       }
       const likeResponse = await fetch("http://localhost:9000/likes");
       const likeData = await likeResponse.json();

@@ -1,5 +1,5 @@
 import "./App.css";
-import io from 'socket.io-client'
+
 import FormComponent from "./formStuff";
 import Error from "./Error";
 import React from "react";
@@ -12,9 +12,7 @@ import ProfilePage from "./ProfilePage";
 import HomePage from "./HomePage";
 import CardProfile from "./CardProfile";
 import Notifications from "./Notifications";
-import Chatroom from './Chatroom';
-
-const socket = io.connect('http://localhost:9000');
+import Chatroom from "./Chatroom";
 
 function App() {
   return (

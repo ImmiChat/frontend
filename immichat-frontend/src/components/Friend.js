@@ -7,33 +7,17 @@ const Friend = (props) => {
   }
   const { firstName, lastName, isFriend, id } = props;
   return (
-    <div className="nearby-user">
-      <div className="row">
-        <Link
-          to={`/profile/${id}`}
-          style={{ textDecoration: "none", fontSize: "1.25rem" }}
-        >
-          <div className="col-md-2 col-sm-2">
+    <div className="m-3 ">
+      <Link to={props.isMessage ? `/messages/${id}` : `/profile/${id}`}>
+        <div className="d-flex align-items-center">
+          <div className="">
             <AccountCircle style={{ width: "50px", height: "50px" }} />
           </div>
-          <div className="col-md-7 col-sm-7">
-            <h5 className="names">
-              {/* <a href="#" className="profile-link"> */}
-              {firstName} {lastName}
-              {/* </a> */}
-            </h5>
-          </div>
-        </Link>
-        <div className="friendBtn col-md-3 col-sm-3" onClick={handeReload}>
-          <a href="/">
-            {isFriend && (
-              <button className="bn54">
-                <span className="bn54span">Unfriend</span>
-              </button>
-            )}
-          </a>
+          <h5 className="names">
+            {firstName} {lastName}
+          </h5>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

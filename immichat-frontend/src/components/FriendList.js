@@ -4,7 +4,7 @@ import React from "react";
 import AuthenticationContext from "../context/AuthenticationContext";
 import Friend from "./Friend";
 
-const FriendList = () => {
+const FriendList = (props) => {
   const { user, friends } = React.useContext(AuthenticationContext);
 
   return (
@@ -19,7 +19,7 @@ const FriendList = () => {
                   id={friend.id}
                   firstName={friend.first_name}
                   lastName={friend.last_name}
-                  isFriend={true}
+                  isMessage={props.isMessage}
                 />
               ))}
           </div>
