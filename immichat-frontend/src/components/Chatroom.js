@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import InboxList from "./InboxList";
 import AuthenticationContext from "../context/AuthenticationContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Chat from "./Chat";
 import io from "socket.io-client";
 
@@ -11,6 +11,7 @@ const socket = io.connect("http://localhost:9000");
 const Chatroom = () => {
   const { user } = React.useContext(AuthenticationContext);
   const [message, setMessage] = React.useState("");
+  const { id } = React.useParams();
   const [chat, setChat] = React.useState([]);
 
   const sendChat = (e) => {
