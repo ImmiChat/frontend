@@ -343,23 +343,6 @@ function FormComponent() {
             <Title>Sign Up</Title>
             <div className="inputs1">
               <Input
-                type="text"
-                name="firstName"
-                id="fname"
-                placeholder="First Name"
-                value={signupForm.firstName}
-                onChange={handleSignupFormChange}
-              />
-              <Input
-                type="text"
-                name="lastName"
-                id="lname"
-                placeholder="Last Name"
-                value={signupForm.lastName}
-                onChange={handleSignupFormChange}
-              />
-
-              <Input
                 type="email"
                 name="email"
                 id="emailId2"
@@ -368,16 +351,14 @@ function FormComponent() {
                 onChange={handleSignupFormChange}
               />
               <Input
-                type="password"
-                name="password"
-                id="passwordId2"
-                placeholder="Password"
-                value={signupForm.password}
+                type="text"
+                name="firstName"
+                id="fname"
+                placeholder="First Name"
+                value={signupForm.firstName}
                 onChange={handleSignupFormChange}
               />
-              <br />
-            </div>
-            <div className="inputs2">
+
               <Input
                 type="text"
                 name="language"
@@ -388,18 +369,37 @@ function FormComponent() {
               />
               <Input
                 type="text"
-                name="country"
-                id="country"
-                placeholder="Country"
-                value={signupForm.country}
-                onChange={handleSignupFormChange}
-              />
-              <Input
-                type="text"
                 name="bio"
                 id="bio"
                 placeholder="Bio"
                 value={signupForm.bio}
+                onChange={handleSignupFormChange}
+              />
+              <br />
+            </div>
+            <div className="inputs2">
+              <Input
+                type="password"
+                name="password"
+                id="passwordId2"
+                placeholder="Password"
+                value={signupForm.password}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="text"
+                name="lastName"
+                id="lname"
+                placeholder="Last Name"
+                value={signupForm.lastName}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="text"
+                name="country"
+                id="country"
+                placeholder="Country"
+                value={signupForm.country}
                 onChange={handleSignupFormChange}
               />
             </div>

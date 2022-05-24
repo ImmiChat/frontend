@@ -217,6 +217,39 @@
   outline: none;
 }
 
+.card input#fname
+{
+  width: 210px;
+}
+
+.card input#lname
+{
+  width: 210px;
+}
+
+.card input#email
+{
+  width: 210px;
+  margin-left: 50px;
+}
+
+.card input#language
+{
+  width: 210px;
+  margin-left: 15px;
+}
+
+.card input#country
+{
+  width: 200px;
+  margin-right: 55px;
+}
+
+.card input#Bio
+{
+  width: 210px;
+}
+
 @keyframes savebounce
 {
   5%,
