@@ -2,6 +2,7 @@ import "./LandingPage.css";
 import { Navigate, Link } from "react-router-dom";
 import AuthenticationContext from "../context/AuthenticationContext";
 import React from "react";
+import Button2 from "./Button";
 
 export default function Mission() {
   const { user } = React.useContext(AuthenticationContext);
@@ -63,6 +64,7 @@ export default function Mission() {
               </div>
             </div>
           </nav>
+            
           <div className="lefttext">
             <div className="textwrap">
               <h1>Welcome to Immichat!</h1>

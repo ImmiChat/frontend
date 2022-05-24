@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Luckiest+Guy&family=Montserrat:wght@700&family=Nosifer&family=Oswald:wght@400;600&family=Roboto:wght@100;300&family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .body1
 {
@@ -36,7 +36,7 @@
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
-  font-family: 'Bradley Hand', cursive;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 40px;
 }

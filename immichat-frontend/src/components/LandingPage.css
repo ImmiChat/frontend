@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Luckiest+Guy&family=Montserrat:wght@700&family=Nosifer&family=Oswald:wght@400;600&family=Roboto:wght@100;300&family=Rubik+Glitch&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .body {
   margin: 0;
@@ -102,7 +102,7 @@
   width: 100%;
   overflow-wrap: break-word;
   font-size: 50px;
-  font-family: "Nosifer", cursive;
+  font-family: "Poppins";
   padding: 0;
   color: white;
   justify-content: center;
@@ -113,7 +113,7 @@
 .lefttext .textwrap p {
   margin: 0px 20px 0px 20px;
   font-size: 20px;
-  font-family: "Oswald", cursive;
+  font-family: "Poppins";
   padding: 0;
   color: black;
   justify-content: center;
@@ -126,7 +126,7 @@
 }
 
 .message {
-  font-family: "Brush Script MT", cursive;
+  font-family: "Poppins";
   font-size: 45px;
   font-weight: bold;
 }
@@ -142,7 +142,7 @@
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid;
-  font-family: "Bradley Hand", cursive;
+  font-family: "Poppins";
   font-weight: bold;
   font-size: 40px;
 }
