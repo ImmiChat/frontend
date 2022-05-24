@@ -1,0 +1,64 @@
+.signup input#fname
+{
+  width: 200px;
+}
+
+.signup input#lname
+{
+  width: 200px;
+}
+
+.signup input#emailId2
+{
+  width: 200px;
+}
+
+.signup input#passwordId2
+{
+  width: 200px;
+}
+
+.signup .inputs1
+{
+  display: block;
+  float: left;
+  margin-right: 250px;
+  margin-top: 15px;
+  width: 200px;
+  height: 1px;
+}
+
+.signup .inputs2
+{
+  display: block;
+  float: right;
+  margin-left: 300px;
+  margin-bottom: 95px;
+  width: 200px;
+  height: 105px;
+}
+
+.signup input#language
+{
+  width: 200px;
+}
+
+.signup input#country
+{
+  width: 200px;
+}
+
+.signup input#bio
+{
+  width: 200px;
+}
+
+.signup a
+{
+  font-size: 20px;
+}
+
+.signup .linkTag
+{
+  margin-top: 70px;
+}
