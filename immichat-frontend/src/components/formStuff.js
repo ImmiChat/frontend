@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import AuthenticationContext from "../context/AuthenticationContext";
-import { useNavigate, Navigate, Link } from "react-router-dom";
-import "./Nav.css";
-
-import { setToken } from "../utils/http";
-import LanguageChange from "./translate";
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
+import AuthenticationContext from '../context/AuthenticationContext';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
+import './Nav.css';
+import './formStuff.css';
+import { setToken } from '../utils/http';
+import LanguageChange from './translate';
 
 const move = keyframes`
 0%{
@@ -27,25 +27,23 @@ const BackgroundBox = styled.div`
   border-radius: 23px;
   border: 1px solid #053271;
   .text1 {
-    z-index: ${(props) => (props.clicked ? "-700" : "700")};
-    transform: ${(props) =>
-      props.clicked ? "translateX(0)" : "translateX(100%)"};
+    z-index: ${(props) => (props.clicked ? '-700' : '700')};
+    transform: ${(props) => (props.clicked ? 'translateX(0)' : 'translateX(100%)')};
     transition: transform 1s ease-in-out;
-    animation: ${(props) => (props.clicked ? move : "none")} 1.5s;
+    animation: ${(props) => (props.clicked ? move : 'none')} 1.5s;
   }
   .text2 {
-    z-index: ${(props) => (props.clicked ? "700" : "-700")};
-    animation: ${(props) => (props.clicked ? "none" : move)} 1.5s;
-    transform: ${(props) =>
-      props.clicked ? "translateX(-100%)" : "translateX(0%)"};
+    z-index: ${(props) => (props.clicked ? '700' : '-700')};
+    animation: ${(props) => (props.clicked ? 'none' : move)} 1.5s;
+    transform: ${(props) => (props.clicked ? 'translateX(-100%)' : 'translateX(0%)')};
     transition: transform 1s ease-in-out;
   }
   .signin {
     position: absolute;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "-600" : "500")};
-    transform: ${(props) => (props.clicked ? "none" : "translateX(-50%)")};
+    z-index: ${(props) => (props.clicked ? '-600' : '500')};
+    transform: ${(props) => (props.clicked ? 'none' : 'translateX(-50%)')};
     transition: all 1s;
   }
   .signup {
@@ -53,8 +51,8 @@ const BackgroundBox = styled.div`
     width: 35%;
     top: 0%;
     text-align: center;
-    z-index: ${(props) => (props.clicked ? "500" : "-500")};
-    transform: ${(props) => (props.clicked ? "translateX(50%)" : "none")};
+    z-index: ${(props) => (props.clicked ? '500' : '-500')};
+    transform: ${(props) => (props.clicked ? 'translateX(50%)' : 'none')};
     transition: all 1s;
   }
 `;
@@ -67,11 +65,9 @@ const Box1 = styled.div`
   right: 0;
   top: 0;
   z-index: 600;
-  transform: ${(props) =>
-    props.clicked ? "translateX(-122%)" : "translateX(0%)"};
+  transform: ${(props) => (props.clicked ? 'translateX(-122%)' : 'translateX(0%)')};
   transition: transform 1s;
-  border-radius: ${(props) =>
-    props.clicked ? "23px 0 0 23px" : "0 23px 23px 0"};
+  border-radius: ${(props) => (props.clicked ? '23px 0 0 23px' : '0 23px 23px 0')};
 `;
 
 const Form = styled.form`
@@ -144,8 +140,8 @@ const ButtonAnimate = styled.button`
   top: 70%;
   border: none;
   cursor: pointer;
-  right: ${(props) => (props.clicked ? "52%" : "42%")};
-  transform: ${(props) => (props.clicked ? "rotate(360deg)" : "rotate(0)")};
+  right: ${(props) => (props.clicked ? '52%' : '42%')};
+  transform: ${(props) => (props.clicked ? 'rotate(360deg)' : 'rotate(0)')};
   transition: all 1.5s;
   background-color: transparent;
   &::before {
@@ -173,7 +169,7 @@ const Text = styled.div`
   }
   .attention-icon {
     position: absolute;
-    right: ${(props) => (props.clicked ? "0" : "none")};
+    right: ${(props) => (props.clicked ? '0' : 'none')};
     top: 100%;
     font-size: 5rem;
   }
@@ -184,8 +180,8 @@ function FormComponent() {
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [signinForm, setSigninForm] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [signinMessage, setSigninMessage] = React.useState(null);
   const [signupMessage, setSignupMessage] = React.useState(null);
@@ -199,10 +195,13 @@ function FormComponent() {
     });
   };
   const [signupForm, setSignUpForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    language: '',
+    country: '',
+    bio: '',
   });
 
   const handleSignupFormChange = (event) => {
@@ -216,10 +215,10 @@ function FormComponent() {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/register", {
-      method: "POST",
+    const response = await fetch('http://localhost:9000/register', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(signupForm),
@@ -230,10 +229,10 @@ function FormComponent() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:9000/login", {
-      method: "POST",
+    const response = await fetch('http://localhost:9000/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(signinForm),
     });
@@ -244,9 +243,9 @@ function FormComponent() {
     }
     setToken(data.token);
     setUser({ ...data.user, isAuth: true });
-    window.localStorage.setItem("refreshToken", data.refreshToken);
+    window.localStorage.setItem('refreshToken', data.refreshToken);
     setTimeout(() => {
-      navigate("/home");
+      navigate('/home');
     }, 1000);
   };
 
@@ -292,14 +291,15 @@ function FormComponent() {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div
                 className="navbar-nav wrapper1"
-                style={{ marginLeft: "35%", fontSize: 20 }}
+                style={{ marginLeft: '35%', fontSize: 20 }}
               >
                 <Link
                   className="nav-item nav-link active"
                   to="/home"
                   id="navicon1"
                 >
-                  Home{" "}
+                  Home
+                  {' '}
                 </Link>
                 <Link className="nav-item nav-link" to="/auth" id="navicon1">
                   Sign Up / Sign In
@@ -310,7 +310,7 @@ function FormComponent() {
         </div>
       </body>
 
-      <div className="Box mt-5" style={{ fontSize: "62.5%" }}>
+      <div className="Box mt-5" style={{ fontSize: '62.5%' }}>
         <BackgroundBox clicked={click}>
           <ButtonAnimate clicked={click} onClick={handleClick} />
 
@@ -333,7 +333,7 @@ function FormComponent() {
               onChange={handleSignInForm}
             />
             <Links href="#">
-              <b>{signinMessage || "Forgot Your Password?"}</b>
+              <b>{signinMessage || 'Forgot Your Password?'}</b>
             </Links>
             <LanguageChange />
             <Button>Sign In</Button>
@@ -341,51 +341,73 @@ function FormComponent() {
 
           <Form className="signup" onSubmit={handleRegistration}>
             <Title>Sign Up</Title>
-            <Input
-              type="text"
-              name="firstName"
-              id="fname"
-              placeholder="First Name"
-              value={signupForm.firstName}
-              onChange={handleSignupFormChange}
-            />
-            <Input
-              type="text"
-              name="lastName"
-              id="lname"
-              placeholder="Last Name"
-              value={signupForm.lastName}
-              onChange={handleSignupFormChange}
-            />
+            <div className="inputs1">
+              <Input
+                type="text"
+                name="firstName"
+                id="fname"
+                placeholder="First Name"
+                value={signupForm.firstName}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="text"
+                name="lastName"
+                id="lname"
+                placeholder="Last Name"
+                value={signupForm.lastName}
+                onChange={handleSignupFormChange}
+              />
 
-            <Input
-              type="email"
-              name="email"
-              id="emailId2"
-              placeholder="Email"
-              value={signupForm.email}
-              onChange={handleSignupFormChange}
-            />
-            <Input
-              type="password"
-              name="password"
-              id="passwordId2"
-              placeholder="Password"
-              value={signupForm.password}
-              onChange={handleSignupFormChange}
-            />
-            <br />
-            {/* <h2>Choose your country or territory:</h2>
-          <CountryDropdown
-            id="countries"
-            className="countryForm"
-            preferredCountries={["us", "ca"]}
-            value={signupForm.countryofOrigin}
-            onChange={handleSignupFormChange}
-          ></CountryDropdown> */}
-            <Links href="#" onClick={handleClick}>
-              {signupMessage || "Already have an account?"}
-            </Links>
+              <Input
+                type="email"
+                name="email"
+                id="emailId2"
+                placeholder="Email"
+                value={signupForm.email}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="password"
+                name="password"
+                id="passwordId2"
+                placeholder="Password"
+                value={signupForm.password}
+                onChange={handleSignupFormChange}
+              />
+              <br />
+            </div>
+            <div className="inputs2">
+              <Input
+                type="text"
+                name="language"
+                id="language"
+                placeholder="Language"
+                value={signupForm.language}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="text"
+                name="country"
+                id="country"
+                placeholder="Country"
+                value={signupForm.country}
+                onChange={handleSignupFormChange}
+              />
+              <Input
+                type="text"
+                name="bio"
+                id="bio"
+                placeholder="Bio"
+                value={signupForm.bio}
+                onChange={handleSignupFormChange}
+              />
+            </div>
+            <div className="linkTag">
+              <Links href="#" onClick={handleClick}>
+                {signupMessage || 'Already have an account?'}
+              </Links>
+            </div>
             <Button>Sign Up</Button>
           </Form>
 
