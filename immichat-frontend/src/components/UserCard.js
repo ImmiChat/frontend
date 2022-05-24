@@ -31,7 +31,7 @@ const UserCard = (props) => {
     acceptFriendRequest(id);
   };
 
-  const handleDeleteFriend = (id) => {
+  const handleDeleteFriend = (id, requested) => {
     async function deleteFriend(friendId) {
       const response = await fetch(url, {
         method: "DELETE",
@@ -41,7 +41,7 @@ const UserCard = (props) => {
         body: JSON.stringify({ id: friendId }),
       });
       const data = await response.json();
-      const userId = data[0].friend_two;
+      const userId = requested ? data[0].friend_two : data[0].friend_one;
       setFriends(
         friends.filter((friend) => parseInt(friend.id) !== parseInt(userId))
       );
@@ -66,22 +66,25 @@ const UserCard = (props) => {
           />
           <div className="card-body">
             <h5 className="card-title text-center">
-              {first_name} {last_name}
+              {first_name} 
+            </h5>
+            <h5 className="card-title text-center">
+              {last_name}
             </h5>
           </div>
         </div>
       </Link>
       {!props.sent && (
-        <div className="">
+        <div className="d-flex justify-content-around">
           <button
-            className="btn col-5 purpBackground mx-2 text-white mb-4"
+            className="btn purpBackground text-white mb-4 small"
             onClick={() => handleAcceptFriendRequest(id)}
           >
             Accept
           </button>
           <button
-            className="btn col-6 btn-secondary mb-4"
-            onClick={() => handleDeleteFriend(id)}
+            className="btn btn-secondary mb-4 small"
+            onClick={() => handleDeleteFriend(id, false)}
           >
             Decline
           </button>
@@ -90,8 +93,8 @@ const UserCard = (props) => {
       {props.sent && (
         <div className="d-flex justify-content-center">
           <button
-            className="btn col-6 btn-secondary mb-4"
-            onClick={() => handleDeleteFriend(id)}
+            className="btn col-6 btn-secondary mb-4 small"
+            onClick={() => handleDeleteFriend(id, true)}
           >
             Cancel
           </button>

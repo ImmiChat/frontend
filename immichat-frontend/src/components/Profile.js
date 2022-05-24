@@ -125,7 +125,10 @@ const Profile = (props) => {
       <div className="col-4 col-xl-2 bg-white py-5">
         <Sidebar />
       </div>
-      <div className="col-8 col-xl-6 border-start border-end border-secondary">
+      <div
+        className="col-8 col-xl-6 border-start border-end border-secondary"
+        style={{ minHeight: "100vh" }}
+      >
         <div className="container-fluid purpBackground">
           <div className="py-5 w-100 m-auto text-white d-flex justify-content-center row">
             <div className="d-flex flex-wrap justify-content-center col-5  h-100">
@@ -250,7 +253,11 @@ const Profile = (props) => {
                     </div>
                   )}
                   {parseInt(user.id) !== parseInt(id) && (
-                    <button className="mx-2 btn btn-secondary">Message</button>
+                    <Link to={`/messages/${id}`}>
+                      <button className="mx-2 btn btn-secondary">
+                        Message
+                      </button>
+                    </Link>
                   )}
                 </div>
               </div>

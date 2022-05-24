@@ -25,7 +25,7 @@ const Notifications = () => {
       <div className="col-4 col-xl-2 bg-white py-5">
         <Sidebar />
       </div>
-      <div className="col-8 col-xl-6 bg-muted border-start border-end border-secondary">
+      <div className="col-8 col-xl-6 bg-muted border-start border-end border-secondary" style={{minHeight:'100vh'}}>
         <div className="container-fluid mt-5 ">
           <div
             className="row pt-3 d-flex flex-wrap"
