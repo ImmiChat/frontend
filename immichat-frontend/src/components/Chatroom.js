@@ -11,29 +11,27 @@ const socket = io.connect("http://localhost:9000");
 const Chatroom = () => {
   const { user } = React.useContext(AuthenticationContext);
   const [message, setMessage] = React.useState("");
-  const { id } = React.useParams();
+  const { id } = useParams();
   const [chat, setChat] = React.useState([]);
+
+  React.useEffect(() => {
+    async function getChat() {
+      const response = await fetch(
+        `http://localhost:9000/user/${user.id}/chat/${id}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setChat(data);
+    }
+    getChat();
+    console.log("hello");
+  }, [id]);
 
   const sendChat = (e) => {
     e.preventDefault();
     socket.emit("chat", { message });
     setMessage("");
   };
-
-  const chatArray = [
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-    { isUser: false, text: "Hey what's going on? " },
-    { isUser: true, text: "Hey what's going on? " },
-  ];
 
   return !user.first_name ? (
     <Navigate to="/" />
@@ -60,9 +58,8 @@ const Chatroom = () => {
             className="mt-5 "
             style={{ overflowY: "scroll", maxHeight: "65vh" }}
           >
-            {chatArray.map((chat) => (
-              <Chat chat={chat} />
-            ))}
+            {chat.length > 0 &&
+              chat.map((chat) => <Chat chat={chat} userId={user.id} />)}
           </div>
         </div>
         <div className="sticky-bottom">
