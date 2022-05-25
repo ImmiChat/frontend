@@ -13,6 +13,7 @@ import CardProfile from "./CardProfile";
 import Notifications from "./Notifications";
 
 function App() {
+ 
   return (
     <Routes>
       <Route path="/" element={<Mission />} />
