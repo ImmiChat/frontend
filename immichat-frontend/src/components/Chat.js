@@ -1,10 +1,9 @@
 import React from "react";
 const Chat = (props) => {
-  console.log(props);
   return (
     <div
       className={`d-flex align-items-center ${
-        props.chat.sender_id === props.userId
+        !(parseInt(props.chat.sender_id) === parseInt(props.userId))
           ? `justify-content-start`
           : "justify-content-end"
       } `}
@@ -13,7 +12,7 @@ const Chat = (props) => {
         className="d-flex align-items-center px-2"
         style={{ minHeight: "50px" }}
       >
-        {props.chat.sender_id === props.userId && (
+        {!(parseInt(props.chat.sender_id) === parseInt(props.userId)) && (
           <img
             className="rounded-circle mx-3"
             style={{ width: "50px", height: "50px" }}
@@ -26,7 +25,7 @@ const Chat = (props) => {
           style={{
             minHeight: "50px",
             backgroundColor: `${
-              props.chat.sender_id === props.userId ? "#e4e6eb" : "#ae83f4"
+              !(parseInt(props.chat.sender_id) === parseInt(props.userId)) ? "#e4e6eb" : "#ae83f4"
             }`,
           }}
         >

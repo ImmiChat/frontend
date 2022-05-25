@@ -13,8 +13,9 @@ const Chatroom = () => {
   const [message, setMessage] = React.useState("");
   const { id } = useParams();
   const [chat, setChat] = React.useState([]);
-
+  const scrollRef = React.useRef();
   React.useEffect(() => {
+    if (!id) return;
     async function getChat() {
       const response = await fetch(
         `http://localhost:9000/user/${user.id}/chat/${id}`
@@ -27,8 +28,28 @@ const Chatroom = () => {
     console.log("hello");
   }, [id]);
 
+  React.useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
   const sendChat = (e) => {
     e.preventDefault();
+    if (!message) return;
+
+    async function postChat() {
+      const response = await fetch(
+        `http://localhost:9000/user/${user.id}/chat/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ message }),
+        }
+      );
+      const data = await response.json();
+      setChat([...chat, data[0]]);
+    }
+    postChat();
     socket.emit("chat", { message });
     setMessage("");
   };
@@ -56,10 +77,14 @@ const Chatroom = () => {
           </div>
           <div
             className="mt-5 "
-            style={{ overflowY: "scroll", maxHeight: "65vh" }}
+            style={{ overflowY: "auto", maxHeight: "65vh" }}
           >
             {chat.length > 0 &&
-              chat.map((chat) => <Chat chat={chat} userId={user.id} />)}
+              chat.map((chat) => (
+                <div ref={scrollRef}>
+                  <Chat chat={chat} userId={user.id} />
+                </div>
+              ))}
           </div>
         </div>
         <div className="sticky-bottom">
