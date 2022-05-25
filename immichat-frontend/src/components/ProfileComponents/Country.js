@@ -1,5 +1,6 @@
 const CountryOfOrigin = ({ onChange, value }) => (
     <div className="field">
+      <div id="first">
       <label htmlFor="status">Country of Origin:</label>
       <input
         id="country"
@@ -10,6 +11,7 @@ const CountryOfOrigin = ({ onChange, value }) => (
         placeholder="Country of Origin"
         required
       />
+      </div>
     </div>
 );
 

@@ -10,12 +10,12 @@
 
 .profilecard  .card
 {
-  width: 30vw;
+  width: 40vw;
   height: 70vh;
   padding: 15px;
   margin-top: 100px;
   margin-bottom: 40px;
-  margin-left: 150px;
+  margin-left: 80px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@
 .profilecard  .field
 {
   margin: 5px;
-  display: inline-block;
+  display: block;
   align-items: center;
   flex-direction: column;
 }
@@ -52,6 +52,7 @@
 {
   color: #b19cd9;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .card .email
@@ -217,38 +218,96 @@
   outline: none;
 }
 
+.field label,input{
+  display:flex;
+  flex-direction:column;
+}
+
+.field #first{
+  margin-right: 300px;
+  height: 15px;
+}
+
+.field #last{
+  margin-left: 350px;
+  height: 20px;
+}
+
+/* .field #bio {
+  margin-top: 30px;
+  margin-bottom: 5px;
+} */
+
+/* .field #emailField{
+  margin-right: 300px;
+} */
+
+/* .card label#last{
+  vertical-align: top;
+  margin-left: 300px;
+}
+
+.card label#lang{
+  margin-left: 290px;
+}
+
+.card label#bio{
+  margin-left: 230px;
+}
+
 .card input#fname
 {
-  width: 210px;
+  width: 110px;
+  margin-right: 200px;
 }
 
 .card input#lname
 {
-  width: 210px;
+  width: 110px;
 }
 
 .card input#email
 {
-  width: 210px;
-  margin-left: 50px;
+  width: 110px;
+  margin-right: 150px;
 }
 
 .card input#language
 {
-  width: 210px;
-  margin-left: 15px;
+  width: 110px;
 }
 
 .card input#country
 {
-  width: 200px;
-  margin-right: 55px;
+  width: 170px;
+  margin-right: 250px;
 }
 
 .card input#Bio
 {
-  width: 210px;
+  width: 150px;
 }
+
+.field #firstField{
+  display: block;
+  height: 50vh;
+} */
+
+/* .field #emailField{
+  height: 10px;
+} */
+
+/* .field #langField{
+  margin-bottom: 100px;
+} */
+
+/* .field #lastField{
+  height: 10px;
+} */
+
+/* .field #bioField{
+  height: 50vh;
+} */
 
 @keyframes savebounce
 {

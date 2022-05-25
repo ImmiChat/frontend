@@ -1,5 +1,6 @@
 const Language = ({ onChange, value }) => (
     <div className="field">
+      <div id="last">
       <label htmlFor="status">Language:</label>
       <input
         id="language"
@@ -10,6 +11,7 @@ const Language = ({ onChange, value }) => (
         placeholder="Language"
         required
       />
+      </div>
     </div>
 );
 
