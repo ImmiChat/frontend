@@ -1,5 +1,6 @@
 const FirstName = ({ onChange, value }) => (
   <div className="field">
+    <div id="first">
     <label htmlFor="name">First Name:</label>
     <input
       id="fname"
@@ -10,6 +11,7 @@ const FirstName = ({ onChange, value }) => (
       placeholder="First Name"
       required
     />
+    </div>
   </div>
 );
 

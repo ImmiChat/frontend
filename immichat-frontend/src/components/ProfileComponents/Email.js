@@ -1,5 +1,6 @@
 const Email = ({ onChange, value }) => (
     <div className="field">
+      <div id="first">
       <label htmlFor="email">Email:</label>
       <input
         id="email"
@@ -10,6 +11,7 @@ const Email = ({ onChange, value }) => (
         placeholder="Email"
         required
       />
+      </div>
     </div>
 );
 

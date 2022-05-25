@@ -1,0 +1,23 @@
+.chat
+{
+  margin-top: 40px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.chatText
+{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.chatText h3
+{
+  font-family: 'Rockwell';
+}
+
+.rightArrow
+{
+  font-size: 50px;
+}
