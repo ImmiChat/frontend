@@ -14,16 +14,24 @@ const Chatroom = () => {
   const { id } = useParams();
   const [chat, setChat] = React.useState([]);
   const scrollRef = React.useRef();
+  const [username, setUsername] = React.useState("");
+  async function getChat() {
+    const response = await fetch(
+      `http://localhost:9000/user/${user.id}/chat/${id}`
+    );
+    const data = await response.json();
+    console.log(data);
+    setChat(data);
+  }
   React.useEffect(() => {
     if (!id) return;
-    async function getChat() {
-      const response = await fetch(
-        `http://localhost:9000/user/${user.id}/chat/${id}`
-      );
+    async function getUserName() {
+      const response = await fetch(`http://localhost:9000/user/${id}`);
       const data = await response.json();
-      console.log(data);
-      setChat(data);
+      setUsername(data[0].first_name + " " + data[0].last_name);
     }
+
+    getUserName();
     getChat();
     console.log("hello");
   }, [id]);
@@ -31,6 +39,19 @@ const Chatroom = () => {
   React.useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
+
+  // Called whenevr you receive a message
+  React.useEffect(() => {
+    socket.on("receive_message", (payload) => {
+      const newMessage = {
+        sender_id: id,
+        receiver_id: user.id,
+        message: payload.message,
+      };
+      getChat();
+    });
+  }, [socket]);
+
   const sendChat = (e) => {
     e.preventDefault();
     if (!message) return;
@@ -73,7 +94,7 @@ const Chatroom = () => {
               src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
               alt=""
             />
-            <h4>Matthew Tan</h4>
+            <h4>{username}</h4>
           </div>
           <div
             className="mt-5 "
