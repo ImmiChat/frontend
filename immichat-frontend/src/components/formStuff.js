@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import "./Nav.css";
-
 import { setToken } from "../utils/http";
 import LanguageChange from "./translate";
 
@@ -82,7 +81,7 @@ const Form = styled.form`
   justify-content: center;
   height: 100%;
   padding: 0 4rem;
-  font-family: "Courier New", monospace;
+  font-family: "Poppins"
   /* z-index: 100; */
 `;
 
@@ -165,7 +164,7 @@ const Text = styled.div`
   flex-direction: column;
   letter-spacing: 0.2rem;
   color: #000;
-  font-family: "Brush Script MT", cursive;
+  font-family: "Poppins";
   .attention {
     font-size: 2.5rem;
     position: relative;

@@ -80,7 +80,7 @@ export default function Mission() {
                 </label>
               </div>
               <span className="message">
-                Click on heart to show your support!
+                Click on the heart to show your support!
               </span>
             </div>
           </div>
