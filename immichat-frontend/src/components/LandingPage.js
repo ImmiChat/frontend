@@ -1,7 +1,7 @@
-import "./LandingPage.css";
-import { Navigate, Link } from "react-router-dom";
-import AuthenticationContext from "../context/AuthenticationContext";
-import React from "react";
+import './LandingPage.css';
+import { Navigate, Link } from 'react-router-dom';
+import AuthenticationContext from '../context/AuthenticationContext';
+import React from 'react';
 
 export default function Mission() {
   const { user } = React.useContext(AuthenticationContext);
@@ -28,7 +28,7 @@ export default function Mission() {
               to="/"
               className="navbar-brand"
               href="/"
-              style={{ paddingLeft: 150, fontSize: 40 }}
+              style={{ paddingLeft: 150, fontSize: 35 }}
             >
               <div className="wrapper">
                 <div className="typing-demo">Immichat</div>
@@ -48,14 +48,15 @@ export default function Mission() {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div
                 className="navbar-nav wrapper"
-                style={{ marginLeft: "35%", fontSize: 20 }}
+                style={{ marginLeft: '35%', fontSize: 20 }}
               >
                 <Link
                   className="nav-item nav-link active"
                   to="/home"
                   id="navicon"
                 >
-                  Home{" "}
+                  Home
+                  {' '}
                 </Link>
                 <Link className="nav-item nav-link" to="/auth" id="navicon">
                   Sign Up / Sign In
@@ -71,13 +72,13 @@ export default function Mission() {
                 through discussions, live chats, and resource sharing to
                 ultimately ease the culture shock of moving to a new country.
               </p>
-              <div className="heart">
+              <div className="heart" style={{ marginBottom: '10px' }}>
                 <label className="like">
                   <input type="checkbox" className="input" />
                   <div className="hearth" />
                 </label>
               </div>
-              <span className="message">Click on heart to support!</span>
+              <h3 style={{ marginRight: '10%', fontSize: 25 }}>Click on heart to support!</h3>
             </div>
           </div>
           <div className="rightimage">

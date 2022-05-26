@@ -1,5 +1,4 @@
 import Sidebar from "./Sidebar";
-import RightSideBar from "./RightSideBar";
 import AuthenticationContext from "../context/AuthenticationContext";
 import React from "react";
 import InboxList from "./InboxList";

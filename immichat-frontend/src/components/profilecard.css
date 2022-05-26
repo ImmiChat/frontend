@@ -1,7 +1,7 @@
 .profilecard body
 {
   font-family: "Poppins";
-    display: flex;
+  display: flex;
   justify-content: center;
   background-repeat: no-repeat, no-repeat;
   background-position: 200% -40%;
@@ -10,7 +10,7 @@
 
 .profilecard  .card
 {
-  width: 40vw;
+  width: 38vw;
   height: 70vh;
   padding: 15px;
   margin-top: 100px;
@@ -38,7 +38,6 @@
 .profilecard  .field
 {
   margin: 5px;
-  display: block;
   align-items: center;
   flex-direction: column;
 }
@@ -52,7 +51,6 @@
 {
   color: #b19cd9;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .card .email
@@ -83,7 +81,7 @@
   padding: 6px;
   cursor: pointer;
   background: linear-gradient(270deg, blueviolet, blueviolet);
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .profilecard  .img-wrap
@@ -219,18 +217,22 @@
 }
 
 .field label,input{
-  display:flex;
+  display: flex;
   flex-direction:column;
 }
 
 .field #first{
   margin-right: 300px;
-  height: 15px;
+  height: 5px;
 }
 
 .field #last{
   margin-left: 350px;
-  height: 20px;
+  height: 30px;
+}
+
+.field #last .theBio{
+  margin-bottom: 40px;
 }
 
 @keyframes savebounce

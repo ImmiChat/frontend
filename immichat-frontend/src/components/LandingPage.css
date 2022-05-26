@@ -28,6 +28,10 @@
   --frames: 62;
 }
 
+.heart{
+  height:20vh;
+}
+
 .heart html {
   min-height: 100vh;
   display: flex;
@@ -143,7 +147,7 @@
   overflow: hidden;
   border-right: 3px solid;
   font-family: "Poppins";
-    font-weight: bold;
+  font-weight: bold;
   font-size: 40px;
 }
 
