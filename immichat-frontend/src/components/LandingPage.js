@@ -66,7 +66,7 @@ export default function Mission() {
           <div className="lefttext">
             <div className="textwrap">
               <h1>Welcome to Immichat!</h1>
-              <p className="missiontext">
+              <p className="missiontext fw-bold">
                 Our mission is to cultivate community among immigrants in NYC
                 through discussions, live chats, and resource sharing to
                 ultimately ease the culture shock of moving to a new country.
@@ -77,9 +77,7 @@ export default function Mission() {
                   <div className="hearth" />
                 </label>
               </div>
-              <span className="message">
-                Click on heart to show your support!
-              </span>
+              <span className="message">Click on heart to support!</span>
             </div>
           </div>
           <div className="rightimage">
