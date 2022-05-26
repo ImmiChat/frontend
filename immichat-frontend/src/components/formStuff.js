@@ -160,7 +160,7 @@ const ButtonAnimate = styled.button`
 const Text = styled.div`
   position: absolute;
   z-index: 1000;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   letter-spacing: 0.2rem;

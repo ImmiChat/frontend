@@ -2,7 +2,6 @@ import {
   Home,
   Message,
   AccountCircle,
-  Settings,
   Notifications,
 } from "@mui/icons-material";
 import LanguageChange from "./translate";

@@ -15,6 +15,7 @@ const RightSideBar = (props) => {
           <button className="btn rounded-pill btn-primary mx-2">Search</button>
         </form> */}
         <div>
+          <h3>Search for friend:</h3>
           <SearchBar />
         </div>
         <div className="pt-5 d-flex flex-wrap justify-content-between border-bottom border-dark">
