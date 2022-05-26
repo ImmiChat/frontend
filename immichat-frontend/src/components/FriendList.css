@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .container{
     box-sizing: border-box;
 }
@@ -31,7 +32,7 @@ img.profile-photo-lg{
 
 .names{
     padding-left: 30px;
-    font-family: 'Candara';
+    font-family: "Poppins";
     font-weight: bold;
 }
 
@@ -57,7 +58,7 @@ img.profile-photo-lg{
 }
 
 .bn54 .bn54span {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Poppins";
   color: #FFFFFF;
   font-size: 12px;
   font-weight: 500;

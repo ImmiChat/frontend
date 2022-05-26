@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import AuthenticationContext from "../context/AuthenticationContext";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import "./Nav.css";
-
+import Light from "./Light";
 import { setToken } from "../utils/http";
 import LanguageChange from "./translate";
 
@@ -82,7 +82,7 @@ const Form = styled.form`
   justify-content: center;
   height: 100%;
   padding: 0 4rem;
-  font-family: "Courier New", monospace;
+  font-family: "Poppins";
   /* z-index: 100; */
 `;
 
@@ -165,7 +165,7 @@ const Text = styled.div`
   flex-direction: column;
   letter-spacing: 0.2rem;
   color: #000;
-  font-family: "Brush Script MT", cursive;
+  font-family: "Poppins";
   .attention {
     font-size: 2.5rem;
     position: relative;
@@ -175,7 +175,7 @@ const Text = styled.div`
     position: absolute;
     right: ${(props) => (props.clicked ? "0" : "none")};
     top: 100%;
-    font-size: 5rem;
+    font-size: 30px;
   }
 `;
 
@@ -309,7 +309,6 @@ function FormComponent() {
           </nav>
         </div>
       </body>
-
       <div className="Box mt-5" style={{ fontSize: "62.5%" }}>
         <BackgroundBox clicked={click}>
           <ButtonAnimate clicked={click} onClick={handleClick} />
@@ -407,7 +406,7 @@ function FormComponent() {
 
           <Box1 clicked={click} />
         </BackgroundBox>
-      </div>
+        </div>
     </>
   );
 }
