@@ -28,7 +28,7 @@ export default function Mission() {
               to="/"
               className="navbar-brand"
               href="/"
-              style={{ paddingLeft: 150, fontSize: 35 }}
+              style={{ paddingLeft: 150, fontSize: 30 }}
             >
               <div className="wrapper">
                 <div className="typing-demo">Immichat</div>
